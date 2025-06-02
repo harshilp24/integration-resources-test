@@ -1,0 +1,566 @@
+{
+  "editor": [
+    {
+      "controlType": "SECTION_V2",
+      "identifier": "SELECTOR",
+      "children": [
+        {
+          "controlType": "DOUBLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "label": "Commands",
+              "description": "Select the method to run",
+              "configProperty": "actionConfiguration.formData.command",
+              "controlType": "DROP_DOWN",
+              "isSearchable": true,
+              "options": [
+                {
+                  "index": 1,
+                  "label": "Send Email",
+                  "value": "GMAIL_SEND_EMAIL"
+                },
+                {
+                  "index": 2,
+                  "label": "Get Email By Id",
+                  "value": "GMAIL_GET_EMAIL_BY_ID"
+                },
+                {
+                  "index": 3,
+                  "label": "Search For Email",
+                  "value": "GMAIL_SEARCH_FOR_EMAIL"
+                },
+                {
+                  "index": 4,
+                  "label": "Delete Email",
+                  "value": "GMAIL_DELETE_EMAIL"
+                },
+                {
+                  "index": 5,
+                  "label": "Create A Contact",
+                  "value": "GMAIL_CREATE_A_CONTACT"
+                },
+                {
+                  "index": 6,
+                  "label": "Get Contact By Resource Name",
+                  "value": "GMAIL_GET_CONTACT_BY_RESOURCE_NAME"
+                },
+                {
+                  "index": 7,
+                  "label": "Search For Contact",
+                  "value": "GMAIL_SEARCH_FOR_CONTACT"
+                },
+                {
+                  "index": 8,
+                  "label": "Delete Contact",
+                  "value": "GMAIL_DELETE_CONTACT"
+                },
+                {
+                  "index": 9,
+                  "label": "Create Draft",
+                  "value": "GMAIL_CREATE_DRAFT"
+                },
+                {
+                  "index": 10,
+                  "label": "Custom Action",
+                  "value": "CUSTOM_ACTION"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GMAIL_SEND_EMAIL",
+      "controlType": "SECTION_V2",
+      "name": "Send Email",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GMAIL_SEND_EMAIL'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "toRecipients",
+              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.toRecipients",
+              "isRequired": true,
+              "label": "To Recipients",
+              "tooltipText": "Email recipients. Can be one or many.",
+              "placeholderText": "[\"john@example.com\", \"team@example.com\"]",
+              "isMultiSelect": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "from",
+              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.from",
+              "isRequired": true,
+              "label": "From",
+              "tooltipText": "Sender email address.",
+              "placeholderText": "john@example.com"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "subject",
+              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.subject",
+              "isRequired": true,
+              "label": "Subject",
+              "tooltipText": "Email subject line.",
+              "placeholderText": "Meeting Follow-up"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "messageContent",
+              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.messageContent",
+              "isRequired": true,
+              "label": "Message Content",
+              "tooltipText": "Message body in plain text or HTML.",
+              "placeholderText": "<p>Hello, team!</p>"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "attachments",
+              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.attachments",
+              "isRequired": false,
+              "label": "Attachments",
+              "tooltipText": "Optional file attachments.",
+              "placeholderText": "[{\"filename\": \"report.pdf\", \"mimeType\": \"application/pdf\", \"content\": \"base64content\"}]"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "additionalHeaders",
+              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.additionalHeaders",
+              "isRequired": false,
+              "label": "Additional Headers",
+              "tooltipText": "Optional headers like reply-to, cc, bcc.",
+              "placeholderText": "{\"reply-to\": \"Jane <jane@example.com>\", \"cc\": \"cc@example.com\"}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GMAIL_GET_EMAIL_BY_ID",
+      "controlType": "SECTION_V2",
+      "name": "Get Email By Id",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GMAIL_GET_EMAIL_BY_ID'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "userId",
+              "configProperty": "actionConfiguration.formData.GMAIL_GET_EMAIL_BY_ID.userId",
+              "isRequired": true,
+              "label": "User Id",
+              "tooltipText": "User ID : Specify the user\u2019s email address. (example: \"user@domain.com\")",
+              "placeholderText": "Enter User Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "messageId",
+              "configProperty": "actionConfiguration.formData.GMAIL_GET_EMAIL_BY_ID.messageId",
+              "isRequired": true,
+              "label": "Message Id",
+              "tooltipText": "Message ID : Specify the ID of the message to retrieve.",
+              "placeholderText": "Enter Message Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GMAIL_SEARCH_FOR_EMAIL",
+      "controlType": "SECTION_V2",
+      "name": "Search For Email",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GMAIL_SEARCH_FOR_EMAIL'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "emailFilterFormula",
+              "configProperty": "actionConfiguration.formData.GMAIL_SEARCH_FOR_EMAIL.emailFilterFormula",
+              "isRequired": false,
+              "label": "Email Filter Formula",
+              "tooltipText": "Search for email based on filter formula. For Example: var1:val1, var2 +val2",
+              "placeholderText": "Enter Email Filter Formula"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "paginationParameters",
+              "configProperty": "actionConfiguration.formData.GMAIL_SEARCH_FOR_EMAIL.paginationParameters",
+              "isRequired": false,
+              "label": "Pagination Parameters",
+              "tooltipText": "Pagination Parameters",
+              "placeholderText": "Enter Pagination Parameters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GMAIL_DELETE_EMAIL",
+      "controlType": "SECTION_V2",
+      "name": "Delete Email",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GMAIL_DELETE_EMAIL'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "userId",
+              "configProperty": "actionConfiguration.formData.GMAIL_DELETE_EMAIL.userId",
+              "isRequired": true,
+              "label": "User Id",
+              "tooltipText": "User ID : Specify the user\u2019s email address. (example: \"user@domain.com\")",
+              "placeholderText": "Enter User Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "messageId",
+              "configProperty": "actionConfiguration.formData.GMAIL_DELETE_EMAIL.messageId",
+              "isRequired": true,
+              "label": "Message Id",
+              "tooltipText": "Message ID : Specify the ID of the message to trash.",
+              "placeholderText": "Enter Message Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GMAIL_CREATE_A_CONTACT",
+      "controlType": "SECTION_V2",
+      "name": "Create A Contact",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GMAIL_CREATE_A_CONTACT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "givenName",
+              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_A_CONTACT.givenName",
+              "isRequired": true,
+              "label": "Given Name",
+              "tooltipText": "Contact\u2019s first name.",
+              "placeholderText": "John"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "familyName",
+              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_A_CONTACT.familyName",
+              "isRequired": true,
+              "label": "Family Name",
+              "tooltipText": "Contact\u2019s last name.",
+              "placeholderText": "Doe"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "email",
+              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_A_CONTACT.email",
+              "isRequired": true,
+              "label": "Email",
+              "tooltipText": "Contact\u2019s email address.",
+              "placeholderText": "john.doe@example.com"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "additionalFields",
+              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_A_CONTACT.additionalFields",
+              "isRequired": false,
+              "label": "Additional Fields",
+              "tooltipText": "Optional fields like address or phone.",
+              "placeholderText": "{\"addresses\":[{\"streetAddress\":\"1000 North St.\",\"city\":\"LA\"}]}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GMAIL_GET_CONTACT_BY_RESOURCE_NAME",
+      "controlType": "SECTION_V2",
+      "name": "Get Contact By Resource Name",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GMAIL_GET_CONTACT_BY_RESOURCE_NAME'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "resourceName",
+              "configProperty": "actionConfiguration.formData.GMAIL_GET_CONTACT_BY_RESOURCE_NAME.resourceName",
+              "isRequired": true,
+              "label": "Resource Name",
+              "tooltipText": "Resource Name : Specify the resource name of the contact to fetch.",
+              "placeholderText": "Enter Resource Name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GMAIL_SEARCH_FOR_CONTACT",
+      "controlType": "SECTION_V2",
+      "name": "Search For Contact",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GMAIL_SEARCH_FOR_CONTACT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "searchTerm",
+              "configProperty": "actionConfiguration.formData.GMAIL_SEARCH_FOR_CONTACT.searchTerm",
+              "isRequired": true,
+              "label": "Search Term",
+              "tooltipText": "Term : Specify a search term to search for near or exact matches on the names, nickNames, emailAddresses, phoneNumbers, or organizations Contact properties.",
+              "placeholderText": "Enter Search Term"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GMAIL_DELETE_CONTACT",
+      "controlType": "SECTION_V2",
+      "name": "Delete Contact",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GMAIL_DELETE_CONTACT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "resourceName",
+              "configProperty": "actionConfiguration.formData.GMAIL_DELETE_CONTACT.resourceName",
+              "isRequired": true,
+              "label": "Resource Name",
+              "tooltipText": "Resource Name : Specify the resource name of the contact to delete.",
+              "placeholderText": "Enter Resource Name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GMAIL_CREATE_DRAFT",
+      "controlType": "SECTION_V2",
+      "name": "Create Draft",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GMAIL_CREATE_DRAFT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "toRecipients",
+              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.toRecipients",
+              "isRequired": false,
+              "label": "To Recipients",
+              "tooltipText": "Email recipients. Can be one or many.",
+              "placeholderText": "[\"john@example.com\", \"team@example.com\"]",
+              "isMultiSelect": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "from",
+              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.from",
+              "isRequired": false,
+              "label": "From",
+              "tooltipText": "If omitted, defaults to authenticated user.",
+              "placeholderText": "me"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "subject",
+              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.subject",
+              "isRequired": false,
+              "label": "Subject",
+              "tooltipText": "Email subject line.",
+              "placeholderText": "Meeting Follow-up"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "messageContent",
+              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.messageContent",
+              "isRequired": false,
+              "label": "Message Content",
+              "tooltipText": "Message body in plain text or HTML.",
+              "placeholderText": "<p>Hello, team!</p>"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "attachments",
+              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.attachments",
+              "isRequired": false,
+              "label": "Attachments",
+              "tooltipText": "Optional file attachments.",
+              "placeholderText": "[{\"filename\": \"report.pdf\", \"mimeType\": \"application/pdf\", \"content\": \"base64content\"}]"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "additionalHeaders",
+              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.additionalHeaders",
+              "isRequired": false,
+              "label": "Additional Headers",
+              "tooltipText": "Optional headers like reply-to, cc, bcc.",
+              "placeholderText": "{\"reply-to\": \"Jane <jane@example.com>\", \"cc\": \"cc@example.com\"}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "CUSTOM_ACTION",
+      "controlType": "SECTION_V2",
+      "name": "Custom Action",
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "CUSTOM_ACTION_COLUMN",
+          "children": [
+            {
+              "label": "",
+              "Description": "",
+              "identifier": "CUSTOM_ACTION_FORM",
+              "subtitle": "",
+              "configProperty": "actionConfiguration.formData.CUSTOM_ACTION",
+              "controlType": "CUSTOM_ACTIONS_CONFIG_FORM"
+            }
+          ]
+        }
+      ],
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'CUSTOM_ACTION'}}"
+      }
+    }
+  ]
+}
