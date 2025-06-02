@@ -1,0 +1,639 @@
+{
+  "editor": [
+    {
+      "controlType": "SECTION_V2",
+      "identifier": "SELECTOR",
+      "children": [
+        {
+          "controlType": "DOUBLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "label": "Commands",
+              "description": "Select the method to run",
+              "configProperty": "actionConfiguration.formData.command",
+              "controlType": "DROP_DOWN",
+              "isSearchable": true,
+              "options": [
+                {
+                  "index": 1,
+                  "label": "Create Page",
+                  "value": "NOTION_CREATE_PAGE"
+                },
+                {
+                  "index": 2,
+                  "label": "Update Page",
+                  "value": "NOTION_UPDATE_PAGE"
+                },
+                {
+                  "index": 3,
+                  "label": "Get Page By Id",
+                  "value": "NOTION_GET_PAGE_BY_ID"
+                },
+                {
+                  "index": 4,
+                  "label": "Archive Page",
+                  "value": "NOTION_ARCHIVE_PAGE"
+                },
+                {
+                  "index": 5,
+                  "label": "Search Pages",
+                  "value": "NOTION_SEARCH_PAGES"
+                },
+                {
+                  "index": 6,
+                  "label": "Get Page Content",
+                  "value": "NOTION_GET_PAGE_CONTENT"
+                },
+                {
+                  "index": 7,
+                  "label": "Update Block",
+                  "value": "NOTION_UPDATE_BLOCK"
+                },
+                {
+                  "index": 8,
+                  "label": "Get Block By Id",
+                  "value": "NOTION_GET_BLOCK_BY_ID"
+                },
+                {
+                  "index": 9,
+                  "label": "Delete Block",
+                  "value": "NOTION_DELETE_BLOCK"
+                },
+                {
+                  "index": 10,
+                  "label": "Add Content to Page",
+                  "value": "PROXY_NOTION_ADD_CONTENT"
+                },
+                {
+                  "index": 11,
+                  "label": "Custom Action",
+                  "value": "CUSTOM_ACTION"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "NOTION_CREATE_PAGE",
+      "controlType": "SECTION_V2",
+      "name": "Create Page",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'NOTION_CREATE_PAGE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "parent",
+              "configProperty": "actionConfiguration.formData.NOTION_CREATE_PAGE.parent",
+              "isRequired": true,
+              "label": "Parent",
+              "tooltipText": "Parent : The parent page or database where the new page is inserted, represented as a JSON object with a page_id or database_id key, and the corresponding ID. (example: \"{\n  \"database_id\":\"{{DATABASE_ID}}\"\n}\")",
+              "placeholderText": "Enter Parent"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "properties",
+              "configProperty": "actionConfiguration.formData.NOTION_CREATE_PAGE.properties",
+              "isRequired": true,
+              "label": "Properties",
+              "tooltipText": "Properties : The values of the page\u2019s properties. If the parent is a database, then the schema must match the parent database\u2019s properties. If the parent is a page, then the only valid object key is title. (example: \"{\n  \"title\":[\n    {\n      \"text\":{\n        \"content\":\"My Page\"\n      }\n    }\n  ]\n}\")",
+              "placeholderText": "Enter Properties"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "children",
+              "configProperty": "actionConfiguration.formData.NOTION_CREATE_PAGE.children",
+              "isRequired": false,
+              "label": "Children",
+              "tooltipText": "Children (example: \"[\n  {\n    \"object\":\"block\",\n    \"type\":\"heading_2\",\n    \"heading_2\":{\n      \"rich_text\":[\n        {\n          \"type\":\"text\",\n          \"text\":{\n            \"content\":\"Lacinato kale\"\n          }\n        }\n      ]\n    }\n  }\n]\")",
+              "placeholderText": "Enter Children"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "cover",
+              "configProperty": "actionConfiguration.formData.NOTION_CREATE_PAGE.cover",
+              "isRequired": false,
+              "label": "Cover",
+              "tooltipText": "Cover (example: \"{\n  \"external\":{\n    \"url\":\"https://upload.wikimedia.org/wikipedia/commons/6/62/Tuscankale.jpg\"\n  }\n}\")",
+              "placeholderText": "Enter Cover"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "icon",
+              "configProperty": "actionConfiguration.formData.NOTION_CREATE_PAGE.icon",
+              "isRequired": true,
+              "label": "Icon",
+              "tooltipText": "Icon (example: \"{\n  \"emoji\":\"\ud83e\udd6c\"\n}\")",
+              "placeholderText": "Enter Icon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "NOTION_UPDATE_PAGE",
+      "controlType": "SECTION_V2",
+      "name": "Update Page",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'NOTION_UPDATE_PAGE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "pageId",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_PAGE.pageId",
+              "isRequired": true,
+              "label": "Page Id",
+              "tooltipText": "Page ID : Specify the ID of the Page to Update. (example: \"59833787-2cf9-4fdf-8782-e53db20768a5\")",
+              "placeholderText": "Enter Page Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "SWITCH",
+              "identifier": "archived",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_PAGE.archived",
+              "isRequired": false,
+              "label": "Archived",
+              "tooltipText": "Archived : Whether the page is archived (deleted). Set to true to archive a page. Set to false to un-archive (restore) a page.",
+              "placeholderText": "Enter Archived"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "properties",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_PAGE.properties",
+              "isRequired": false,
+              "label": "Properties",
+              "tooltipText": "Properties : The property values to update for the page. The keys are the names or IDs of the property and the values are property values. If a page property ID is not included, then it is not changed. (example: \"{\n  \"title\":[\n    {\n      \"text\":{\n        \"content\":\"My Page\"\n      }\n    }\n  ]\n}\")",
+              "placeholderText": "Enter Properties"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "cover",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_PAGE.cover",
+              "isRequired": false,
+              "label": "Cover",
+              "tooltipText": "Cover (example: \"{\n  \"external\":{\n    \"url\":\"https://upload.wikimedia.org/wikipedia/commons/6/62/Tuscankale.jpg\"\n  }\n}\")",
+              "placeholderText": "Enter Cover"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "icon",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_PAGE.icon",
+              "isRequired": true,
+              "label": "Icon",
+              "tooltipText": "Icon (example: \"{\n  \"emoji\":\"\ud83e\udd6c\"\n}\")",
+              "placeholderText": "Enter Icon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "NOTION_GET_PAGE_BY_ID",
+      "controlType": "SECTION_V2",
+      "name": "Get Page By Id",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'NOTION_GET_PAGE_BY_ID'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "pageId",
+              "configProperty": "actionConfiguration.formData.NOTION_GET_PAGE_BY_ID.pageId",
+              "isRequired": true,
+              "label": "Page Id",
+              "tooltipText": "Page ID : Specify the ID of the Page to Get. (example: \"59833787-2cf9-4fdf-8782-e53db20768a5\")",
+              "placeholderText": "Enter Page Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "NOTION_ARCHIVE_PAGE",
+      "controlType": "SECTION_V2",
+      "name": "Archive Page",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'NOTION_ARCHIVE_PAGE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "pageId",
+              "configProperty": "actionConfiguration.formData.NOTION_ARCHIVE_PAGE.pageId",
+              "isRequired": true,
+              "label": "Page Id",
+              "tooltipText": "Page ID : Specify the ID of the Page to Archive. (example: \"59833787-2cf9-4fdf-8782-e53db20768a5\")",
+              "placeholderText": "Enter Page Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "NOTION_SEARCH_PAGES",
+      "controlType": "SECTION_V2",
+      "name": "Search Pages",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'NOTION_SEARCH_PAGES'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "searchByTitleFilterSearch",
+              "configProperty": "actionConfiguration.formData.NOTION_SEARCH_PAGES.searchByTitleFilterSearch",
+              "isRequired": false,
+              "label": "Search By Title Filter Search",
+              "tooltipText": "Search pages",
+              "placeholderText": "Enter Search By Title Filter Search"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "NOTION_GET_PAGE_CONTENT",
+      "controlType": "SECTION_V2",
+      "name": "Get Page Content",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'NOTION_GET_PAGE_CONTENT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "blockId",
+              "configProperty": "actionConfiguration.formData.NOTION_GET_PAGE_CONTENT.blockId",
+              "isRequired": true,
+              "label": "Block Id",
+              "tooltipText": "Page ID : Specify a Block or Page ID to receive all of its block\u2019s children in order. (example: \"59833787-2cf9-4fdf-8782-e53db20768a5\")",
+              "placeholderText": "Enter Block Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "NOTION_UPDATE_BLOCK",
+      "controlType": "SECTION_V2",
+      "name": "Update Block",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'NOTION_UPDATE_BLOCK'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "blockId",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_BLOCK.blockId",
+              "isRequired": true,
+              "label": "Block Id",
+              "tooltipText": "Block ID : Specify the ID of the Block to Update. (example: \"9bc30ad4-9373-46a5-84ab-0a7845ee52e6\")",
+              "placeholderText": "Enter Block Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "SWITCH",
+              "identifier": "archived",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_BLOCK.archived",
+              "isRequired": false,
+              "label": "Archived",
+              "tooltipText": "Archived : Set to true to archive (delete) a block. Set to false to un-archive (restore) a block.",
+              "placeholderText": "Enter Archived"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "paragraph",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_BLOCK.paragraph",
+              "isRequired": false,
+              "label": "Paragraph",
+              "tooltipText": "Paragraph (example: \"{\n  \"rich_text\":[\n    {\n      \"type\":\"text\",\n      \"text\":{\n        \"content\":\"Lacinato kale\",\n        \"link\":null\n      }\n    }\n  ],\n  \"color\":\"default\"\n}\")",
+              "placeholderText": "Enter Paragraph"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "image",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_BLOCK.image",
+              "isRequired": false,
+              "label": "Image",
+              "tooltipText": "Image (example: \"{\n  \"type\":\"external\",\n  \"external\":{\n    \"url\":\"https://website.domain/images/image.png\"\n  }\n}\")",
+              "placeholderText": "Enter Image"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "bookmark",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_BLOCK.bookmark",
+              "isRequired": false,
+              "label": "Bookmark",
+              "tooltipText": "Bookmark (example: \"{\n  \"caption\":[],\n  \"url\":\"https://companywebsite.com\"\n}\")",
+              "placeholderText": "Enter Bookmark"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "code",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_BLOCK.code",
+              "isRequired": false,
+              "label": "Code",
+              "tooltipText": "Code (example: \"{\n  \"rich_text\":[\n    {\n      \"type\":\"text\",\n      \"text\":{\n        \"content\":\"const a = 3\"\n      }\n    }\n  ],\n  \"language\":\"javascript\"\n}\")",
+              "placeholderText": "Enter Code"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "pdf",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_BLOCK.pdf",
+              "isRequired": false,
+              "label": "Pdf",
+              "tooltipText": "PDF (example: \"{\n  \"type\": \"external\",\n  \"external\": {\n      \"url\": \"https://website.domain/files/doc.pdf\"\n  }\n}\")",
+              "placeholderText": "Enter Pdf"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "table",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_BLOCK.table",
+              "isRequired": false,
+              "label": "Table",
+              "tooltipText": "Table (example: \"{\n  \"table_width\":2,\n  \"has_column_header\":false,\n  \"has_row_header\":false\n}\")",
+              "placeholderText": "Enter Table"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "tableOfContent",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_BLOCK.tableOfContent",
+              "isRequired": false,
+              "label": "Table Of Content",
+              "tooltipText": "Table of Contents (example: \"{\n  \"color\":\"default\"\n}\")",
+              "placeholderText": "Enter Table Of Content"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "additionalFields",
+              "configProperty": "actionConfiguration.formData.NOTION_UPDATE_BLOCK.additionalFields",
+              "isRequired": false,
+              "label": "Additional Fields",
+              "tooltipText": "Additional Fields (example: \"{\n  \"child_page\":{\n    \"title\":\"Lacinato kale\"\n  },\n  \"child_database\":{\n    \"title\":\"My database\"\n  }\n}\")",
+              "placeholderText": "Enter Additional Fields"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "NOTION_GET_BLOCK_BY_ID",
+      "controlType": "SECTION_V2",
+      "name": "Get Block By Id",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'NOTION_GET_BLOCK_BY_ID'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "blockId",
+              "configProperty": "actionConfiguration.formData.NOTION_GET_BLOCK_BY_ID.blockId",
+              "isRequired": true,
+              "label": "Block Id",
+              "tooltipText": "Block ID : Specify the ID of the Block to Get. (example: \"9bc30ad4-9373-46a5-84ab-0a7845ee52e6\")",
+              "placeholderText": "Enter Block Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "NOTION_DELETE_BLOCK",
+      "controlType": "SECTION_V2",
+      "name": "Delete Block",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'NOTION_DELETE_BLOCK'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "blockId",
+              "configProperty": "actionConfiguration.formData.NOTION_DELETE_BLOCK.blockId",
+              "isRequired": true,
+              "label": "Block Id",
+              "tooltipText": "Block ID : Specify the ID of the Block to Delete. (example: \"9bc30ad4-9373-46a5-84ab-0a7845ee52e6\")",
+              "placeholderText": "Enter Block Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "PROXY_NOTION_ADD_CONTENT",
+      "controlType": "SECTION_V2",
+      "name": "Append Content to Notion Page",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'PROXY_NOTION_ADD_CONTENT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "blockId",
+              "configProperty": "actionConfiguration.formData.PROXY_NOTION_ADD_CONTENT.blockId",
+              "isRequired": true,
+              "label": "Page/Block ID",
+              "tooltipText": "ID of the Notion page or block to append content to.",
+              "placeholderText": "Enter Page or Block ID"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z2",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "notionBlocks",
+              "configProperty": "actionConfiguration.formData.PROXY_NOTION_ADD_CONTENT.notionBlocks",
+              "isRequired": true,
+              "label": "Notion Blocks JSON",
+              "tooltipText": "Array of blocks to append in Notion's block format. Example: heading, paragraph, etc.",
+              "placeholderText": "[{ \"object\": \"block\", \"type\": \"heading_2\", \"heading_2\": { ... } }]"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z2",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "after",
+              "configProperty": "actionConfiguration.formData.PROXY_NOTION_ADD_CONTENT.after",
+              "isRequired": false,
+              "label": "Insert After (Block ID)",
+              "placeholderText": "Enter Block ID (optional)",
+              "tooltipText": "Optional: ID of the existing child block after which new blocks will be inserted."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "CUSTOM_ACTION",
+      "controlType": "SECTION_V2",
+      "name": "Custom Action",
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "CUSTOM_ACTION_COLUMN",
+          "children": [
+            {
+              "label": "",
+              "Description": "",
+              "identifier": "CUSTOM_ACTION_FORM",
+              "subtitle": "",
+              "configProperty": "actionConfiguration.formData.CUSTOM_ACTION",
+              "controlType": "CUSTOM_ACTIONS_CONFIG_FORM"
+            }
+          ]
+        }
+      ],
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'CUSTOM_ACTION'}}"
+      }
+    }
+  ]
+}
