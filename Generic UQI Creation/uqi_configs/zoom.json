@@ -1,0 +1,829 @@
+{
+  "editor": [
+    {
+      "controlType": "SECTION_V2",
+      "identifier": "SELECTOR",
+      "children": [
+        {
+          "controlType": "DOUBLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "label": "Commands",
+              "description": "Select the method to run",
+              "configProperty": "actionConfiguration.formData.command",
+              "controlType": "DROP_DOWN",
+              "isSearchable": true,
+              "options": [
+                {
+                  "index": 1,
+                  "label": "Create Meeting",
+                  "value": "ZOOM_CREATE_MEETING"
+                },
+                {
+                  "index": 2,
+                  "label": "Update Meeting",
+                  "value": "ZOOM_UPDATE_MEETING"
+                },
+                {
+                  "index": 3,
+                  "label": "Get Meeting",
+                  "value": "ZOOM_GET_MEETING"
+                },
+                {
+                  "index": 4,
+                  "label": "Get Meeting By Id",
+                  "value": "ZOOM_GET_MEETING_BY_ID"
+                },
+                {
+                  "index": 5,
+                  "label": "Delete Meeting",
+                  "value": "ZOOM_DELETE_MEETING"
+                },
+                {
+                  "index": 6,
+                  "label": "Add Meeting Registrant",
+                  "value": "ZOOM_ADD_MEETING_REGISTRANT"
+                },
+                {
+                  "index": 7,
+                  "label": "Get Meeting Registrant",
+                  "value": "ZOOM_GET_MEETING_REGISTRANT"
+                },
+                {
+                  "index": 8,
+                  "label": "Delete Meeting Registrant",
+                  "value": "ZOOM_DELETE_MEETING_REGISTRANT"
+                },
+                {
+                  "index": 9,
+                  "label": "Get Recording By Meeting Id",
+                  "value": "ZOOM_GET_RECORDING_BY_MEETING_ID"
+                },
+                {
+                  "index": 10,
+                  "label": "Search Recording",
+                  "value": "ZOOM_SEARCH_RECORDING"
+                },
+                {
+                  "index": 11,
+                  "label": "Custom Action",
+                  "value": "CUSTOM_ACTION"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ZOOM_CREATE_MEETING",
+      "controlType": "SECTION_V2",
+      "name": "Create Meeting",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ZOOM_CREATE_MEETING'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "topic",
+              "configProperty": "actionConfiguration.formData.ZOOM_CREATE_MEETING.topic",
+              "isRequired": true,
+              "label": "Topic",
+              "tooltipText": "Topic (example: \"Meeting name\")",
+              "placeholderText": "Enter Topic"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "startTime",
+              "configProperty": "actionConfiguration.formData.ZOOM_CREATE_MEETING.startTime",
+              "isRequired": true,
+              "label": "Start Time",
+              "tooltipText": "Start Time : Meeting start time (ISO 8601 timestamp). (example: \"2020-03-31T12:02:00Z\")",
+              "placeholderText": "Enter Start Time"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "duration",
+              "configProperty": "actionConfiguration.formData.ZOOM_CREATE_MEETING.duration",
+              "isRequired": true,
+              "label": "Duration",
+              "tooltipText": "Duration : Meeting duration in minutes. (example: \"60\")",
+              "placeholderText": "Enter Duration"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "timezone",
+              "configProperty": "actionConfiguration.formData.ZOOM_CREATE_MEETING.timezone",
+              "isRequired": true,
+              "label": "Timezone",
+              "tooltipText": "Timezone (example: \"America/Los_Angeles\")",
+              "placeholderText": "Enter Timezone"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "agenda",
+              "configProperty": "actionConfiguration.formData.ZOOM_CREATE_MEETING.agenda",
+              "isRequired": false,
+              "label": "Agenda",
+              "tooltipText": "Agenda : Meeting description.",
+              "placeholderText": "Enter Agenda"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "password",
+              "configProperty": "actionConfiguration.formData.ZOOM_CREATE_MEETING.password",
+              "isRequired": false,
+              "label": "Password",
+              "tooltipText": "Password : Passcode to join the meeting. By default, passcode may only contain the following characters: [a-z A-Z 0-9 @ - _ *] and have a maximum of 10 characters.",
+              "placeholderText": "Enter Password"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "SWITCH",
+              "identifier": "enableWaitingRoom",
+              "configProperty": "actionConfiguration.formData.ZOOM_CREATE_MEETING.enableWaitingRoom",
+              "isRequired": false,
+              "label": "Enable Waiting Room",
+              "tooltipText": "Enable Waiting Room",
+              "placeholderText": "Enter Enable Waiting Room"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "SWITCH",
+              "identifier": "sendRegistrantConfirmation",
+              "configProperty": "actionConfiguration.formData.ZOOM_CREATE_MEETING.sendRegistrantConfirmation",
+              "isRequired": false,
+              "label": "Send Registrant Confirmation",
+              "tooltipText": "Send Registrants Confirmation Email",
+              "placeholderText": "Enter Send Registrant Confirmation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ZOOM_UPDATE_MEETING",
+      "controlType": "SECTION_V2",
+      "name": "Update Meeting",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ZOOM_UPDATE_MEETING'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "meetingId",
+              "configProperty": "actionConfiguration.formData.ZOOM_UPDATE_MEETING.meetingId",
+              "isRequired": true,
+              "label": "Meeting Id",
+              "tooltipText": "Meeting ID : The ID of the Meeting to update.",
+              "placeholderText": "Enter Meeting Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "topic",
+              "configProperty": "actionConfiguration.formData.ZOOM_UPDATE_MEETING.topic",
+              "isRequired": false,
+              "label": "Topic",
+              "tooltipText": "Topic (example: \"Meeting name\")",
+              "placeholderText": "Enter Topic"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "startTime",
+              "configProperty": "actionConfiguration.formData.ZOOM_UPDATE_MEETING.startTime",
+              "isRequired": false,
+              "label": "Start Time",
+              "tooltipText": "Start Time : Meeting start time (ISO 8601 timestamp). (example: \"2020-03-31T12:02:00Z\")",
+              "placeholderText": "Enter Start Time"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "duration",
+              "configProperty": "actionConfiguration.formData.ZOOM_UPDATE_MEETING.duration",
+              "isRequired": false,
+              "label": "Duration",
+              "tooltipText": "Duration : Meeting duration in minutes. (example: \"60\")",
+              "placeholderText": "Enter Duration"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "timezone",
+              "configProperty": "actionConfiguration.formData.ZOOM_UPDATE_MEETING.timezone",
+              "isRequired": false,
+              "label": "Timezone",
+              "tooltipText": "Timezone (example: \"America/Los_Angeles\")",
+              "placeholderText": "Enter Timezone"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "agenda",
+              "configProperty": "actionConfiguration.formData.ZOOM_UPDATE_MEETING.agenda",
+              "isRequired": false,
+              "label": "Agenda",
+              "tooltipText": "Agenda : Meeting description.",
+              "placeholderText": "Enter Agenda"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ZOOM_GET_MEETING",
+      "controlType": "SECTION_V2",
+      "name": "Get Meeting",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ZOOM_GET_MEETING'}}"
+      },
+      "children": []
+    },
+    {
+      "identifier": "ZOOM_GET_MEETING_BY_ID",
+      "controlType": "SECTION_V2",
+      "name": "Get Meeting By Id",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ZOOM_GET_MEETING_BY_ID'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "meetingId",
+              "configProperty": "actionConfiguration.formData.ZOOM_GET_MEETING_BY_ID.meetingId",
+              "isRequired": true,
+              "label": "Meeting Id",
+              "tooltipText": "Meeting ID",
+              "placeholderText": "Enter Meeting Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ZOOM_DELETE_MEETING",
+      "controlType": "SECTION_V2",
+      "name": "Delete Meeting",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ZOOM_DELETE_MEETING'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "meetingId",
+              "configProperty": "actionConfiguration.formData.ZOOM_DELETE_MEETING.meetingId",
+              "isRequired": true,
+              "label": "Meeting Id",
+              "tooltipText": "Meeting ID : The ID of the Meeting to delete.",
+              "placeholderText": "Enter Meeting Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ZOOM_ADD_MEETING_REGISTRANT",
+      "controlType": "SECTION_V2",
+      "name": "Add Meeting Registrant",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ZOOM_ADD_MEETING_REGISTRANT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "meetingId",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.meetingId",
+              "isRequired": true,
+              "label": "Meeting Id",
+              "tooltipText": "Meeting ID : The ID of the Meeting to add registrants to.",
+              "placeholderText": "Enter Meeting Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "email",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.email",
+              "isRequired": true,
+              "label": "Email",
+              "tooltipText": "Email (example: \"name@example.com\")",
+              "placeholderText": "Enter Email"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "firstName",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.firstName",
+              "isRequired": true,
+              "label": "First Name",
+              "tooltipText": "First name",
+              "placeholderText": "Enter First Name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "lastName",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.lastName",
+              "isRequired": false,
+              "label": "Last Name",
+              "tooltipText": "Last Name",
+              "placeholderText": "Enter Last Name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "address",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.address",
+              "isRequired": false,
+              "label": "Address",
+              "tooltipText": "Address",
+              "placeholderText": "Enter Address"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "city",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.city",
+              "isRequired": false,
+              "label": "City",
+              "tooltipText": "City",
+              "placeholderText": "Enter City"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "country",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.country",
+              "isRequired": false,
+              "label": "Country",
+              "tooltipText": "Country",
+              "placeholderText": "Enter Country"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "zip",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.zip",
+              "isRequired": false,
+              "label": "Zip",
+              "tooltipText": "Zip",
+              "placeholderText": "Enter Zip"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "state",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.state",
+              "isRequired": false,
+              "label": "State",
+              "tooltipText": "State",
+              "placeholderText": "Enter State"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "phone",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.phone",
+              "isRequired": false,
+              "label": "Phone",
+              "tooltipText": "Phone",
+              "placeholderText": "Enter Phone"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "organization",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.organization",
+              "isRequired": false,
+              "label": "Organization",
+              "tooltipText": "Organization",
+              "placeholderText": "Enter Organization"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "jobTitle",
+              "configProperty": "actionConfiguration.formData.ZOOM_ADD_MEETING_REGISTRANT.jobTitle",
+              "isRequired": false,
+              "label": "Job Title",
+              "tooltipText": "Job Title",
+              "placeholderText": "Enter Job Title"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ZOOM_GET_MEETING_REGISTRANT",
+      "controlType": "SECTION_V2",
+      "name": "Get Meeting Registrant",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ZOOM_GET_MEETING_REGISTRANT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "meetingId",
+              "configProperty": "actionConfiguration.formData.ZOOM_GET_MEETING_REGISTRANT.meetingId",
+              "isRequired": true,
+              "label": "Meeting Id",
+              "tooltipText": "Meeting ID : The ID of the Meeting whose Registrants to get.",
+              "placeholderText": "Enter Meeting Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "registrantStatus",
+              "configProperty": "actionConfiguration.formData.ZOOM_GET_MEETING_REGISTRANT.registrantStatus",
+              "isRequired": true,
+              "label": "Registrant Status",
+              "tooltipText": "Registrant Status (example: \"choose a user to DM or type {{ to insert a Slack user ID\")",
+              "placeholderText": "Enter Registrant Status",
+              "options": [
+                {
+                  "label": "approved",
+                  "value": "approved"
+                },
+                {
+                  "label": "pending",
+                  "value": "pending"
+                },
+                {
+                  "label": "denied",
+                  "value": "denied"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ZOOM_DELETE_MEETING_REGISTRANT",
+      "controlType": "SECTION_V2",
+      "name": "Delete Meeting Registrant",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ZOOM_DELETE_MEETING_REGISTRANT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "meetingId",
+              "configProperty": "actionConfiguration.formData.ZOOM_DELETE_MEETING_REGISTRANT.meetingId",
+              "isRequired": true,
+              "label": "Meeting Id",
+              "tooltipText": "Meeting ID : The ID of the Meeting to delete a Registrant from.",
+              "placeholderText": "Enter Meeting Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "registrantId",
+              "configProperty": "actionConfiguration.formData.ZOOM_DELETE_MEETING_REGISTRANT.registrantId",
+              "isRequired": false,
+              "label": "Registrant Id",
+              "tooltipText": "Registrant ID : The ID of the Registrant to delete.",
+              "placeholderText": "Enter Registrant Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ZOOM_GET_RECORDING_BY_MEETING_ID",
+      "controlType": "SECTION_V2",
+      "name": "Get Recording By Meeting Id",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ZOOM_GET_RECORDING_BY_MEETING_ID'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "meetingId",
+              "configProperty": "actionConfiguration.formData.ZOOM_GET_RECORDING_BY_MEETING_ID.meetingId",
+              "isRequired": true,
+              "label": "Meeting Id",
+              "tooltipText": "Meeting ID",
+              "placeholderText": "Enter Meeting Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "SWITCH",
+              "identifier": "includeToken",
+              "configProperty": "actionConfiguration.formData.ZOOM_GET_RECORDING_BY_MEETING_ID.includeToken",
+              "isRequired": false,
+              "label": "Include Token",
+              "tooltipText": "Include Token in Download URL : If set to true, all download_url properties will include the user\u2019s access token.",
+              "placeholderText": "Enter Include Token"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ZOOM_SEARCH_RECORDING",
+      "controlType": "SECTION_V2",
+      "name": "Search Recording",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ZOOM_SEARCH_RECORDING'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "searchFrom",
+              "configProperty": "actionConfiguration.formData.ZOOM_SEARCH_RECORDING.searchFrom",
+              "isRequired": false,
+              "label": "Search From",
+              "tooltipText": "From Date : Start date in 'yyyy-mm-dd' UTC format (example: \"2022-10-22\")",
+              "placeholderText": "Enter Search From"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "searchUpto",
+              "configProperty": "actionConfiguration.formData.ZOOM_SEARCH_RECORDING.searchUpto",
+              "isRequired": false,
+              "label": "Search Upto",
+              "tooltipText": "To Date : End date in 'yyyy-mm-dd' UTC format (example: \"2022-11-21\")",
+              "placeholderText": "Enter Search Upto"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "meetingId",
+              "configProperty": "actionConfiguration.formData.ZOOM_SEARCH_RECORDING.meetingId",
+              "isRequired": false,
+              "label": "Meeting Id",
+              "tooltipText": "Meeting ID (example: \"6840331990\")",
+              "placeholderText": "Enter Meeting Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "SWITCH",
+              "identifier": "trash",
+              "configProperty": "actionConfiguration.formData.ZOOM_SEARCH_RECORDING.trash",
+              "isRequired": false,
+              "label": "Trash",
+              "tooltipText": "Trash : Use in combination with Trash Type to indicate type of Cloud Recording you need to retrieve",
+              "placeholderText": "Enter Trash"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "trashType",
+              "configProperty": "actionConfiguration.formData.ZOOM_SEARCH_RECORDING.trashType",
+              "isRequired": false,
+              "label": "Trash Type",
+              "tooltipText": "Trash Type : The type of Cloud recording that you would like to retrieve from the trash",
+              "placeholderText": "Enter Trash Type",
+              "options": [
+                {
+                  "label": "meeting_recordings",
+                  "value": "meeting_recordings"
+                },
+                {
+                  "label": "recording_file",
+                  "value": "recording_file"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "SWITCH",
+              "identifier": "includeToken",
+              "configProperty": "actionConfiguration.formData.ZOOM_SEARCH_RECORDING.includeToken",
+              "isRequired": false,
+              "label": "Include Token",
+              "tooltipText": "Include Token in Download URL : If set to true, all download_url properties will include the user\u2019s access token.",
+              "placeholderText": "Enter Include Token"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "CUSTOM_ACTION",
+      "controlType": "SECTION_V2",
+      "name": "Custom Action",
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "CUSTOM_ACTION_COLUMN",
+          "children": [
+            {
+              "label": "",
+              "Description": "",
+              "identifier": "CUSTOM_ACTION_FORM",
+              "subtitle": "",
+              "configProperty": "actionConfiguration.formData.CUSTOM_ACTION",
+              "controlType": "CUSTOM_ACTIONS_CONFIG_FORM"
+            }
+          ]
+        }
+      ],
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'CUSTOM_ACTION'}}"
+      }
+    }
+  ]
+}
