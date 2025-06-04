@@ -17,51 +17,66 @@
               "options": [
                 {
                   "index": 1,
-                  "label": "Send Email",
-                  "value": "GMAIL_SEND_EMAIL"
+                  "label": "Create Comment",
+                  "value": "ASANA_CREATE_COMMENT"
                 },
                 {
                   "index": 2,
-                  "label": "Get Email By Id",
-                  "value": "GMAIL_GET_EMAIL_BY_ID"
+                  "label": "Create Project",
+                  "value": "ASANA_CREATE_PROJECT"
                 },
                 {
                   "index": 3,
-                  "label": "Search For Email",
-                  "value": "GMAIL_SEARCH_FOR_EMAIL"
+                  "label": "Get Projects",
+                  "value": "ASANA_GET_PROJECTS"
                 },
                 {
                   "index": 4,
-                  "label": "Delete Email",
-                  "value": "GMAIL_DELETE_EMAIL"
+                  "label": "Get Project By Id",
+                  "value": "ASANA_GET_PROJECT_BY_ID"
                 },
                 {
                   "index": 5,
-                  "label": "Create A Contact",
-                  "value": "GMAIL_CREATE_A_CONTACT"
+                  "label": "Create Task",
+                  "value": "ASANA_CREATE_TASK"
                 },
                 {
                   "index": 6,
-                  "label": "Get Contact By Resource Name",
-                  "value": "GMAIL_GET_CONTACT_BY_RESOURCE_NAME"
+                  "label": "Update Task",
+                  "value": "ASANA_UPDATE_TASK"
                 },
                 {
                   "index": 7,
-                  "label": "Search For Contact",
-                  "value": "GMAIL_SEARCH_FOR_CONTACT"
+                  "label": "Get Tasks",
+                  "value": "ASANA_GET_TASKS"
                 },
                 {
                   "index": 8,
-                  "label": "Delete Contact",
-                  "value": "GMAIL_DELETE_CONTACT"
+                  "label": "Get Tasks By Id",
+                  "value": "ASANA_GET_TASKS_BY_ID"
                 },
                 {
                   "index": 9,
-                  "label": "Create Draft",
-                  "value": "GMAIL_CREATE_DRAFT"
+                  "label": "Get Task By External Id",
+                  "value": "ASANA_GET_TASK_BY_EXTERNAL_ID"
                 },
                 {
                   "index": 10,
+                  "label": "Add Task To Section",
+                  "value": "ASANA_ADD_TASK_TO_SECTION"
+                },
+                {
+                  "index": 11,
+                  "label": "Get Teams",
+                  "value": "ASANA_GET_TEAMS"
+                },
+                {
+                  "index": 12,
+                  "label": "Get Workspaces",
+                  "value": "ASANA_GET_WORKSPACES"
+                },
+                {
+                  "index": 13,
                   "label": "Custom Action",
                   "value": "CUSTOM_ACTION"
                 }
@@ -72,11 +87,11 @@
       ]
     },
     {
-      "identifier": "GMAIL_SEND_EMAIL",
+      "identifier": "ASANA_CREATE_COMMENT",
       "controlType": "SECTION_V2",
-      "name": "Send Email",
+      "name": "Create Comment",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'GMAIL_SEND_EMAIL'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_CREATE_COMMENT'}}"
       },
       "children": [
         {
@@ -85,13 +100,12 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "toRecipients",
-              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.toRecipients",
+              "identifier": "task",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_COMMENT.task",
               "isRequired": true,
-              "label": "To Recipients",
-              "tooltipText": "Email recipients. Can be one or many.",
-              "placeholderText": "[\"john@example.com\", \"team@example.com\"]",
-              "isMultiSelect": true
+              "label": "Task",
+              "tooltipText": "Task ID : The ID of the Task the comment will be added to. The comment will be authored by the currently authenticated user.",
+              "placeholderText": "Enter Task"
             }
           ]
         },
@@ -101,83 +115,23 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "from",
-              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.from",
+              "identifier": "text",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_COMMENT.text",
               "isRequired": true,
-              "label": "From",
-              "tooltipText": "Sender email address.",
-              "placeholderText": "john@example.com"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "subject",
-              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.subject",
-              "isRequired": true,
-              "label": "Subject",
-              "tooltipText": "Email subject line.",
-              "placeholderText": "Meeting Follow-up"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "messageContent",
-              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.messageContent",
-              "isRequired": true,
-              "label": "Message Content",
-              "tooltipText": "Message body in plain text or HTML.",
-              "placeholderText": "<p>Hello, team!</p>"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "attachments",
-              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.attachments",
-              "isRequired": false,
-              "label": "Attachments",
-              "tooltipText": "Optional file attachments.",
-              "placeholderText": "[{\"filename\": \"report.pdf\", \"mimeType\": \"application/pdf\", \"content\": \"base64content\"}]"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "additionalHeaders",
-              "configProperty": "actionConfiguration.formData.GMAIL_SEND_EMAIL.additionalHeaders",
-              "isRequired": false,
-              "label": "Additional Headers",
-              "tooltipText": "Optional headers like reply-to, cc, bcc.",
-              "placeholderText": "{\"reply-to\": \"Jane <jane@example.com>\", \"cc\": \"cc@example.com\"}"
+              "label": "Text",
+              "tooltipText": "Text (example: \"This is a comment.\")",
+              "placeholderText": "Enter Text"
             }
           ]
         }
       ]
     },
     {
-      "identifier": "GMAIL_GET_EMAIL_BY_ID",
+      "identifier": "ASANA_CREATE_PROJECT",
       "controlType": "SECTION_V2",
-      "name": "Get Email By Id",
+      "name": "Create Project",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'GMAIL_GET_EMAIL_BY_ID'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_CREATE_PROJECT'}}"
       },
       "children": [
         {
@@ -186,12 +140,12 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "userId",
-              "configProperty": "actionConfiguration.formData.GMAIL_GET_EMAIL_BY_ID.userId",
+              "identifier": "name",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_PROJECT.name",
               "isRequired": true,
-              "label": "User Id",
-              "tooltipText": "User ID : Specify the user\u2019s email address. (example: \"user@domain.com\")",
-              "placeholderText": "Enter User Id"
+              "label": "Name",
+              "tooltipText": "Name (example: \"Stuff to buy\")",
+              "placeholderText": "Enter Name"
             }
           ]
         },
@@ -201,23 +155,53 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "messageId",
-              "configProperty": "actionConfiguration.formData.GMAIL_GET_EMAIL_BY_ID.messageId",
+              "identifier": "workspace",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_PROJECT.workspace",
               "isRequired": true,
-              "label": "Message Id",
-              "tooltipText": "Message ID : Specify the ID of the message to retrieve.",
-              "placeholderText": "Enter Message Id"
+              "label": "Workspace",
+              "tooltipText": "Workspace : Use Connect Portal Workflow Settings to allow users to select which Workspace to create Projects in. Defaults to the user\u2019s first Workspace if left blank. (example: \"{{settings.workspace}}\")",
+              "placeholderText": "Enter Workspace"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "team",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_PROJECT.team",
+              "isRequired": false,
+              "label": "Team",
+              "tooltipText": "Team : Use Connect Portal Workflow Settings to allow users to select which Team to share this Project with. Defaults to the user\u2019s first Team if left blank. (example: \"{{settings.team}}\")",
+              "placeholderText": "Enter Team"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "notes",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_PROJECT.notes",
+              "isRequired": false,
+              "label": "Notes",
+              "tooltipText": "Notes (example: \"These are things we need to purchase.\")",
+              "placeholderText": "Enter Notes"
             }
           ]
         }
       ]
     },
     {
-      "identifier": "GMAIL_SEARCH_FOR_EMAIL",
+      "identifier": "ASANA_GET_PROJECTS",
       "controlType": "SECTION_V2",
-      "name": "Search For Email",
+      "name": "Get Projects",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'GMAIL_SEARCH_FOR_EMAIL'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_PROJECTS'}}"
       },
       "children": [
         {
@@ -225,39 +209,39 @@
           "identifier": "SELECTOR-Z1",
           "children": [
             {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "emailFilterFormula",
-              "configProperty": "actionConfiguration.formData.GMAIL_SEARCH_FOR_EMAIL.emailFilterFormula",
+              "controlType": "DROP_DOWN",
+              "identifier": "archived",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_PROJECTS.archived",
               "isRequired": false,
-              "label": "Email Filter Formula",
-              "tooltipText": "Search for email based on filter formula. For Example: var1:val1, var2 +val2",
-              "placeholderText": "Enter Email Filter Formula"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "paginationParameters",
-              "configProperty": "actionConfiguration.formData.GMAIL_SEARCH_FOR_EMAIL.paginationParameters",
-              "isRequired": false,
-              "label": "Pagination Parameters",
-              "tooltipText": "Pagination Parameters",
-              "placeholderText": "Enter Pagination Parameters"
+              "label": "Archived",
+              "tooltipText": "Archived : Choose Yes to show archived projects. Select No to display only active projects and The Default option will show both archived and active projects.",
+              "placeholderText": "Enter Archived",
+              "options": [
+                {
+                  "label": "default",
+                  "value": "default"
+                },
+                {
+                  "label": "true",
+                  "value": "true"
+                },
+                {
+                  "label": "false",
+                  "value": "false"
+                }
+              ],
+              "isAllowClear": true
             }
           ]
         }
       ]
     },
     {
-      "identifier": "GMAIL_DELETE_EMAIL",
+      "identifier": "ASANA_GET_PROJECT_BY_ID",
       "controlType": "SECTION_V2",
-      "name": "Delete Email",
+      "name": "Get Project By Id",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'GMAIL_DELETE_EMAIL'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_PROJECT_BY_ID'}}"
       },
       "children": [
         {
@@ -266,38 +250,23 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "userId",
-              "configProperty": "actionConfiguration.formData.GMAIL_DELETE_EMAIL.userId",
+              "identifier": "projectFilterId",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_PROJECT_BY_ID.projectFilterId",
               "isRequired": true,
-              "label": "User Id",
-              "tooltipText": "User ID : Specify the user\u2019s email address. (example: \"user@domain.com\")",
-              "placeholderText": "Enter User Id"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "messageId",
-              "configProperty": "actionConfiguration.formData.GMAIL_DELETE_EMAIL.messageId",
-              "isRequired": true,
-              "label": "Message Id",
-              "tooltipText": "Message ID : Specify the ID of the message to trash.",
-              "placeholderText": "Enter Message Id"
+              "label": "Project Filter Id",
+              "tooltipText": "Project ID",
+              "placeholderText": "Enter Project Filter Id"
             }
           ]
         }
       ]
     },
     {
-      "identifier": "GMAIL_CREATE_A_CONTACT",
+      "identifier": "ASANA_CREATE_TASK",
       "controlType": "SECTION_V2",
-      "name": "Create A Contact",
+      "name": "Create Task",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'GMAIL_CREATE_A_CONTACT'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_CREATE_TASK'}}"
       },
       "children": [
         {
@@ -306,12 +275,12 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "givenName",
-              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_A_CONTACT.givenName",
+              "identifier": "name",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.name",
               "isRequired": true,
-              "label": "Given Name",
-              "tooltipText": "Contact\u2019s first name.",
-              "placeholderText": "John"
+              "label": "Name",
+              "tooltipText": "Name (example: \"Task Name\")",
+              "placeholderText": "Enter Name"
             }
           ]
         },
@@ -321,53 +290,113 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "familyName",
-              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_A_CONTACT.familyName",
-              "isRequired": true,
-              "label": "Family Name",
-              "tooltipText": "Contact\u2019s last name.",
-              "placeholderText": "Doe"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "email",
-              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_A_CONTACT.email",
-              "isRequired": true,
-              "label": "Email",
-              "tooltipText": "Contact\u2019s email address.",
-              "placeholderText": "john.doe@example.com"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "additionalFields",
-              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_A_CONTACT.additionalFields",
+              "identifier": "workspace",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.workspace",
               "isRequired": false,
-              "label": "Additional Fields",
-              "tooltipText": "Optional fields like address or phone.",
-              "placeholderText": "{\"addresses\":[{\"streetAddress\":\"1000 North St.\",\"city\":\"LA\"}]}"
+              "label": "Workspace",
+              "tooltipText": "Workspace : Use Connect Portal Workflow Settings to allow users to select which Workspace to create Tasks in. Defaults to the user\u2019s first Workspace if left blank. (example: \"{{settings.workspace}}\")",
+              "placeholderText": "Enter Workspace"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "project",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.project",
+              "isRequired": false,
+              "label": "Project",
+              "tooltipText": "Project : Use Connect Portal Workflow Settings to allow users to select which Project to create this Task in. (example: \"{{settings.project}}\")",
+              "placeholderText": "Enter Project"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "notes",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.notes",
+              "isRequired": false,
+              "label": "Notes",
+              "tooltipText": "Notes",
+              "placeholderText": "Enter Notes"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "dueOnDate",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.dueOnDate",
+              "isRequired": false,
+              "label": "Due On Date",
+              "tooltipText": "Due On : The date on which  this task is due. Cannot be used together with Due At. (example: \"YYYY-MM-DD\")",
+              "placeholderText": "Enter Due On Date"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "dueAtDate",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.dueAtDate",
+              "isRequired": false,
+              "label": "Due At Date",
+              "tooltipText": "Due At : The date and time (ISO timestamp) at which this task is due . Cannot be used together with Due On. (example: \"2019-09-15T02:06:58.147Z\")",
+              "placeholderText": "Enter Due At Date"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "assignee",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.assignee",
+              "isRequired": false,
+              "label": "Assignee",
+              "tooltipText": "Assignee : The ID of the Asana user this task will be assigned to. Use Connect Portal Workflow Settings to allow users to select an Assignee. (example: \"{{settings.assignee}}\")",
+              "placeholderText": "Enter Assignee"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "gid",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.gid",
+              "isRequired": false,
+              "label": "Gid",
+              "tooltipText": "External ID : An ID from your application to associate this task with. You can use this ID to sync updates to this task later.",
+              "placeholderText": "Enter Gid"
             }
           ]
         }
       ]
     },
     {
-      "identifier": "GMAIL_GET_CONTACT_BY_RESOURCE_NAME",
+      "identifier": "ASANA_UPDATE_TASK",
       "controlType": "SECTION_V2",
-      "name": "Get Contact By Resource Name",
+      "name": "Update Task",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'GMAIL_GET_CONTACT_BY_RESOURCE_NAME'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_UPDATE_TASK'}}"
       },
       "children": [
         {
@@ -376,23 +405,139 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "resourceName",
-              "configProperty": "actionConfiguration.formData.GMAIL_GET_CONTACT_BY_RESOURCE_NAME.resourceName",
+              "identifier": "taskId",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.taskId",
               "isRequired": true,
-              "label": "Resource Name",
-              "tooltipText": "Resource Name : Specify the resource name of the contact to fetch.",
-              "placeholderText": "Enter Resource Name"
+              "label": "Task Id",
+              "tooltipText": "Task ID : The ID of the Task that will be updated.",
+              "placeholderText": "Enter Task Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "completeStatus",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.completeStatus",
+              "isRequired": false,
+              "label": "Complete Status",
+              "tooltipText": "Completed Status",
+              "placeholderText": "Enter Complete Status",
+              "options": [
+                {
+                  "label": "true",
+                  "value": "true"
+                },
+                {
+                  "label": "false",
+                  "value": "false"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "name",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.name",
+              "isRequired": false,
+              "label": "Name",
+              "tooltipText": "Name (example: \"Task Name\")",
+              "placeholderText": "Enter Name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "notes",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.notes",
+              "isRequired": false,
+              "label": "Notes",
+              "tooltipText": "Notes",
+              "placeholderText": "Enter Notes"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "dueOnDate",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.dueOnDate",
+              "isRequired": false,
+              "label": "Due On Date",
+              "tooltipText": "Due On : The date on which  this task is due. Cannot be used together with Due At. (example: \"YYYY-MM-DD\")",
+              "placeholderText": "Enter Due On Date"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "dueAtDate",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.dueAtDate",
+              "isRequired": false,
+              "label": "Due At Date",
+              "tooltipText": "Due At : The date and time (ISO timestamp) at which this task is due . Cannot be used together with Due On. (example: \"2019-09-15T02:06:58.147Z\")",
+              "placeholderText": "Enter Due At Date"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "assignee",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.assignee",
+              "isRequired": false,
+              "label": "Assignee",
+              "tooltipText": "Assignee : The ID of the Asana user this task will be assigned to. Use Connect Portal Workflow Settings to allow users to select an Assignee. (example: \"{{settings.assignee}}\")",
+              "placeholderText": "Enter Assignee"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "gid",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.gid",
+              "isRequired": false,
+              "label": "Gid",
+              "tooltipText": "External ID : An ID from your application to associate this task with. You can use this ID to sync updates to this task later.",
+              "placeholderText": "Enter Gid"
             }
           ]
         }
       ]
     },
     {
-      "identifier": "GMAIL_SEARCH_FOR_CONTACT",
+      "identifier": "ASANA_GET_TASKS",
       "controlType": "SECTION_V2",
-      "name": "Search For Contact",
+      "name": "Get Tasks",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'GMAIL_SEARCH_FOR_CONTACT'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_TASKS'}}"
       },
       "children": [
         {
@@ -401,23 +546,68 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "searchTerm",
-              "configProperty": "actionConfiguration.formData.GMAIL_SEARCH_FOR_CONTACT.searchTerm",
-              "isRequired": true,
-              "label": "Search Term",
-              "tooltipText": "Term : Specify a search term to search for near or exact matches on the names, nickNames, emailAddresses, phoneNumbers, or organizations Contact properties.",
-              "placeholderText": "Enter Search Term"
+              "identifier": "workspace",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASKS.workspace",
+              "isRequired": false,
+              "label": "Workspace",
+              "tooltipText": "Workspace : The ID of the Workspace to filter tasks on. Use Connect Portal Workflow Settings to allow users to select a Workspace. (example: \"{{settings.workspace}}\")",
+              "placeholderText": "Enter Workspace"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "project",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASKS.project",
+              "isRequired": false,
+              "label": "Project",
+              "tooltipText": "Project : The ID of the Project to filter tasks on. Use Connect Portal Workflow Settings to allow users to select a Project. (example: \"{{settings.project}}\")",
+              "placeholderText": "Enter Project"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "assignee",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASKS.assignee",
+              "isRequired": false,
+              "label": "Assignee",
+              "tooltipText": "Assignee : The ID of the assignee to filter tasks on. Use Connect Portal Workflow Settings to allow users to select an Assignee. (example: \"{{settings.assignee}}\")",
+              "placeholderText": "Enter Assignee"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "completedSince",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASKS.completedSince",
+              "isRequired": false,
+              "label": "Completed Since",
+              "tooltipText": "Completed since : Only return tasks that are either incomplete or that have been completed since this time (ISO or Unix timestamp). (example: \"2014-04-25T16:15:47-04:00\")",
+              "placeholderText": "Enter Completed Since"
             }
           ]
         }
       ]
     },
     {
-      "identifier": "GMAIL_DELETE_CONTACT",
+      "identifier": "ASANA_GET_TASKS_BY_ID",
       "controlType": "SECTION_V2",
-      "name": "Delete Contact",
+      "name": "Get Tasks By Id",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'GMAIL_DELETE_CONTACT'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_TASKS_BY_ID'}}"
       },
       "children": [
         {
@@ -426,23 +616,23 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "resourceName",
-              "configProperty": "actionConfiguration.formData.GMAIL_DELETE_CONTACT.resourceName",
+              "identifier": "taskId",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASKS_BY_ID.taskId",
               "isRequired": true,
-              "label": "Resource Name",
-              "tooltipText": "Resource Name : Specify the resource name of the contact to delete.",
-              "placeholderText": "Enter Resource Name"
+              "label": "Task Id",
+              "tooltipText": "Task ID",
+              "placeholderText": "Enter Task Id"
             }
           ]
         }
       ]
     },
     {
-      "identifier": "GMAIL_CREATE_DRAFT",
+      "identifier": "ASANA_GET_TASK_BY_EXTERNAL_ID",
       "controlType": "SECTION_V2",
-      "name": "Create Draft",
+      "name": "Get Task By External Id",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'GMAIL_CREATE_DRAFT'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_TASK_BY_EXTERNAL_ID'}}"
       },
       "children": [
         {
@@ -451,92 +641,120 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "toRecipients",
-              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.toRecipients",
-              "isRequired": false,
-              "label": "To Recipients",
-              "tooltipText": "Email recipients. Can be one or many.",
-              "placeholderText": "[\"john@example.com\", \"team@example.com\"]",
-              "isMultiSelect": true
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "from",
-              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.from",
-              "isRequired": false,
-              "label": "From",
-              "tooltipText": "If omitted, defaults to authenticated user.",
-              "placeholderText": "me"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "subject",
-              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.subject",
-              "isRequired": false,
-              "label": "Subject",
-              "tooltipText": "Email subject line.",
-              "placeholderText": "Meeting Follow-up"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "messageContent",
-              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.messageContent",
-              "isRequired": false,
-              "label": "Message Content",
-              "tooltipText": "Message body in plain text or HTML.",
-              "placeholderText": "<p>Hello, team!</p>"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "attachments",
-              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.attachments",
-              "isRequired": false,
-              "label": "Attachments",
-              "tooltipText": "Optional file attachments.",
-              "placeholderText": "[{\"filename\": \"report.pdf\", \"mimeType\": \"application/pdf\", \"content\": \"base64content\"}]"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "additionalHeaders",
-              "configProperty": "actionConfiguration.formData.GMAIL_CREATE_DRAFT.additionalHeaders",
-              "isRequired": false,
-              "label": "Additional Headers",
-              "tooltipText": "Optional headers like reply-to, cc, bcc.",
-              "placeholderText": "{\"reply-to\": \"Jane <jane@example.com>\", \"cc\": \"cc@example.com\"}"
+              "identifier": "gid",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASK_BY_EXTERNAL_ID.gid",
+              "isRequired": true,
+              "label": "Gid",
+              "tooltipText": "External ID : The ID that this task is associated or synced with, from your application.",
+              "placeholderText": "Enter Gid"
             }
           ]
         }
       ]
+    },
+    {
+      "identifier": "ASANA_ADD_TASK_TO_SECTION",
+      "controlType": "SECTION_V2",
+      "name": "Add Task To Section",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ASANA_ADD_TASK_TO_SECTION'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "sectionId",
+              "configProperty": "actionConfiguration.formData.ASANA_ADD_TASK_TO_SECTION.sectionId",
+              "isRequired": true,
+              "label": "Section Id",
+              "tooltipText": "Section ID : The ID of the section to add this task to. (example: \"{{settings.section}}\")",
+              "placeholderText": "Enter Section Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "taskId",
+              "configProperty": "actionConfiguration.formData.ASANA_ADD_TASK_TO_SECTION.taskId",
+              "isRequired": true,
+              "label": "Task Id",
+              "tooltipText": "Task ID : The ID of the task. (example: \"1204619611402340\")",
+              "placeholderText": "Enter Task Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "beforeTaskId",
+              "configProperty": "actionConfiguration.formData.ASANA_ADD_TASK_TO_SECTION.beforeTaskId",
+              "isRequired": false,
+              "label": "Before Task Id",
+              "tooltipText": "Before Task ID : The ID of a task in this section that this task will be inserted before. Cannot be used with After Task ID. (example: \"1204619611402340\")",
+              "placeholderText": "Enter Before Task Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "afterTaskId",
+              "configProperty": "actionConfiguration.formData.ASANA_ADD_TASK_TO_SECTION.afterTaskId",
+              "isRequired": false,
+              "label": "After Task Id",
+              "tooltipText": "After Task ID : The ID of a task in this section that this task will be inserted after. Cannot be used with Before Task ID. (example: \"1204619611402340\")",
+              "placeholderText": "Enter After Task Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ASANA_GET_TEAMS",
+      "controlType": "SECTION_V2",
+      "name": "Get Teams",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_TEAMS'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "workspace",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TEAMS.workspace",
+              "isRequired": true,
+              "label": "Workspace",
+              "tooltipText": "Workspace : Returns the teams in this workspace visible to the authorized user. (example: \"{{settings.workspace}}\")",
+              "placeholderText": "Enter Workspace"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ASANA_GET_WORKSPACES",
+      "controlType": "SECTION_V2",
+      "name": "Get Workspaces",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_WORKSPACES'}}"
+      },
+      "children": []
     },
     {
       "identifier": "CUSTOM_ACTION",
