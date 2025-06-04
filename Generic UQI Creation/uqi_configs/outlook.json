@@ -1,0 +1,867 @@
+{
+  "editor": [
+    {
+      "controlType": "SECTION_V2",
+      "identifier": "SELECTOR",
+      "children": [
+        {
+          "controlType": "DOUBLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "label": "Commands",
+              "description": "Select the method to run",
+              "configProperty": "actionConfiguration.formData.command",
+              "controlType": "DROP_DOWN",
+              "isSearchable": true,
+              "options": [
+                {
+                  "index": 1,
+                  "label": "Create Event",
+                  "value": "OUTLOOK_CREATE_EVENT"
+                },
+                {
+                  "index": 2,
+                  "label": "Update Event",
+                  "value": "OUTLOOK_UPDATE_EVENT"
+                },
+                {
+                  "index": 3,
+                  "label": "Get Event By Id",
+                  "value": "OUTLOOK_GET_EVENT_BY_ID"
+                },
+                {
+                  "index": 4,
+                  "label": "Get Events",
+                  "value": "OUTLOOK_GET_EVENTS"
+                },
+                {
+                  "index": 5,
+                  "label": "Delete Event",
+                  "value": "OUTLOOK_DELETE_EVENT"
+                },
+                {
+                  "index": 6,
+                  "label": "Get Messages",
+                  "value": "OUTLOOK_GET_MESSAGES"
+                },
+                {
+                  "index": 7,
+                  "label": "Send Message",
+                  "value": "OUTLOOK_SEND_MESSAGE"
+                },
+                {
+                  "index": 8,
+                  "label": "Custom Action",
+                  "value": "CUSTOM_ACTION"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "OUTLOOK_CREATE_EVENT",
+      "controlType": "SECTION_V2",
+      "name": "Create Event",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'OUTLOOK_CREATE_EVENT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "userId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_CREATE_EVENT.userId",
+              "isRequired": false,
+              "label": "User Id",
+              "tooltipText": "User ID : Specify a user ID to perform this action if you are working with an application token. (example: \"1b671a64-40d5-491e-99b0-da01ff1f3341\")",
+              "placeholderText": "Enter User Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "subject",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_CREATE_EVENT.subject",
+              "isRequired": true,
+              "label": "Subject",
+              "tooltipText": "Subject : The text of the event\u2019s subject line.",
+              "placeholderText": "Enter Subject"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "startTime",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_CREATE_EVENT.startTime",
+              "isRequired": true,
+              "label": "Start Time",
+              "tooltipText": "Start Time : Accepts YYYY-MM-DD[T]HH:MM:SS date formats.",
+              "placeholderText": "Enter Start Time"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "timeZone",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_CREATE_EVENT.timeZone",
+              "isRequired": false,
+              "label": "Time Zone",
+              "tooltipText": "TimeZone : Use Connect Portal Workflow Settings to allow users to select which timezone the event will be added to. Defaults to the UTC timezone if left blank. (example: \"{{settings.timezone}}\")",
+              "placeholderText": "Enter Time Zone"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "endTime",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_CREATE_EVENT.endTime",
+              "isRequired": false,
+              "label": "End Time",
+              "tooltipText": "End Time : Accepts date in YYYY-MM-DD[T]HH:MM:SS format. Defaults to one hour after the start time if left blank.",
+              "placeholderText": "Enter End Time"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "calendarId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_CREATE_EVENT.calendarId",
+              "isRequired": false,
+              "label": "Calendar Id",
+              "tooltipText": "Calendar : Use Connect Portal Workflow Settings to allow users to select which calendar the event will be added to. Defaults to the user\u2019s primary calendar if left blank. (example: \"{{settings.calendar}}\")",
+              "placeholderText": "Enter Calendar Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "description",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_CREATE_EVENT.description",
+              "isRequired": false,
+              "label": "Description",
+              "tooltipText": "Description : The message associated with the event.",
+              "placeholderText": "Enter Description"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "contentType",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_CREATE_EVENT.contentType",
+              "isRequired": false,
+              "label": "Content Type",
+              "tooltipText": "Content Type",
+              "placeholderText": "Enter Content Type",
+              "options": [
+                {
+                  "label": "text",
+                  "value": "text"
+                },
+                {
+                  "label": "html",
+                  "value": "html"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "locationName",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_CREATE_EVENT.locationName",
+              "isRequired": false,
+              "label": "Location Name",
+              "tooltipText": "Location Name : Display name of the event location.",
+              "placeholderText": "Enter Location Name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "locationUrl",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_CREATE_EVENT.locationUrl",
+              "isRequired": false,
+              "label": "Location Url",
+              "tooltipText": "Location URL : URL representing the location.",
+              "placeholderText": "Enter Location Url"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "attendees",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_CREATE_EVENT.attendees",
+              "isRequired": false,
+              "label": "Attendees",
+              "tooltipText": "Attendees : Accepts an array of email addresses or email addresses separated by commas.",
+              "placeholderText": "Enter Attendees"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "OUTLOOK_UPDATE_EVENT",
+      "controlType": "SECTION_V2",
+      "name": "Update Event",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'OUTLOOK_UPDATE_EVENT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "userId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.userId",
+              "isRequired": false,
+              "label": "User Id",
+              "tooltipText": "User ID : Specify a user ID to perform this action if you are working with an application token. (example: \"1b671a64-40d5-491e-99b0-da01ff1f3341\")",
+              "placeholderText": "Enter User Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "eventId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.eventId",
+              "isRequired": true,
+              "label": "Event Id",
+              "tooltipText": "Event ID : The ID of the event to update.",
+              "placeholderText": "Enter Event Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "subject",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.subject",
+              "isRequired": false,
+              "label": "Subject",
+              "tooltipText": "Subject : The text of the event\u2019s subject line.",
+              "placeholderText": "Enter Subject"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "startTime",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.startTime",
+              "isRequired": false,
+              "label": "Start Time",
+              "tooltipText": "Start Time : Accepts YYYY-MM-DD[T]HH:MM:SS date formats.",
+              "placeholderText": "Enter Start Time"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "timeZone",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.timeZone",
+              "isRequired": false,
+              "label": "Time Zone",
+              "tooltipText": "TimeZone : Use Connect Portal Workflow Settings to allow users to select which timezone the event will be added to. Defaults to the UTC timezone if left blank. (example: \"{{settings.timezone}}\")",
+              "placeholderText": "Enter Time Zone"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "endTime",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.endTime",
+              "isRequired": false,
+              "label": "End Time",
+              "tooltipText": "End Time : Accepts date in YYYY-MM-DD[T]HH:MM:SS format.",
+              "placeholderText": "Enter End Time"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "calendarId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.calendarId",
+              "isRequired": false,
+              "label": "Calendar Id",
+              "tooltipText": "Calendar : Use Connect Portal Workflow Settings to allow users to select which calendar the event will be added to. Defaults to the user\u2019s primary calendar if left blank. (example: \"{{settings.calendar}}\")",
+              "placeholderText": "Enter Calendar Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "description",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.description",
+              "isRequired": false,
+              "label": "Description",
+              "tooltipText": "Description : The message associated with the event.",
+              "placeholderText": "Enter Description"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "contentType",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.contentType",
+              "isRequired": false,
+              "label": "Content Type",
+              "tooltipText": "Content Type",
+              "placeholderText": "Enter Content Type",
+              "options": [
+                {
+                  "label": "text",
+                  "value": "text"
+                },
+                {
+                  "label": "html",
+                  "value": "html"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "locationName",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.locationName",
+              "isRequired": false,
+              "label": "Location Name",
+              "tooltipText": "Location Name : Display name of the event location.",
+              "placeholderText": "Enter Location Name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "locationUrl",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.locationUrl",
+              "isRequired": false,
+              "label": "Location Url",
+              "tooltipText": "Location URL : URL representing the location.",
+              "placeholderText": "Enter Location Url"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "attendees",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_UPDATE_EVENT.attendees",
+              "isRequired": false,
+              "label": "Attendees",
+              "tooltipText": "Attendees : Accepts an array of email addresses or email addresses separated by commas.",
+              "placeholderText": "Enter Attendees"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "OUTLOOK_GET_EVENT_BY_ID",
+      "controlType": "SECTION_V2",
+      "name": "Get Event By Id",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'OUTLOOK_GET_EVENT_BY_ID'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "userId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_GET_EVENT_BY_ID.userId",
+              "isRequired": false,
+              "label": "User Id",
+              "tooltipText": "User ID : Specify a user ID to perform this action if you are working with an application token. (example: \"1b671a64-40d5-491e-99b0-da01ff1f3341\")",
+              "placeholderText": "Enter User Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "eventId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_GET_EVENT_BY_ID.eventId",
+              "isRequired": true,
+              "label": "Event Id",
+              "tooltipText": "Event ID : The ID of the event to get.",
+              "placeholderText": "Enter Event Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "calendarId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_GET_EVENT_BY_ID.calendarId",
+              "isRequired": false,
+              "label": "Calendar Id",
+              "tooltipText": "Calendar : Use Connect Portal Workflow Settings to allow users to select calendar. Defaults to the user\u2019s primary calendar if left blank. (example: \"{{settings.calendar}}\")",
+              "placeholderText": "Enter Calendar Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "OUTLOOK_GET_EVENTS",
+      "controlType": "SECTION_V2",
+      "name": "Get Events",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'OUTLOOK_GET_EVENTS'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "userId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_GET_EVENTS.userId",
+              "isRequired": false,
+              "label": "User Id",
+              "tooltipText": "User ID : Specify a user ID to perform this action if you are working with an application token. (example: \"1b671a64-40d5-491e-99b0-da01ff1f3341\")",
+              "placeholderText": "Enter User Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "calendarId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_GET_EVENTS.calendarId",
+              "isRequired": false,
+              "label": "Calendar Id",
+              "tooltipText": "Calendar : Use Connect Portal Workflow Settings to allow users to select which calendar the event will be added to. Defaults to the user\u2019s primary calendar if left blank. (example: \"{{settings.calendar}}\")",
+              "placeholderText": "Enter Calendar Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "eventsFilterFormula",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_GET_EVENTS.eventsFilterFormula",
+              "isRequired": false,
+              "label": "Events Filter Formula",
+              "tooltipText": "Filter events based on the outlook filter formula. For example, \"subject eq 'Meeting'\"",
+              "placeholderText": "Enter Events Filter Formula"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "OUTLOOK_DELETE_EVENT",
+      "controlType": "SECTION_V2",
+      "name": "Delete Event",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'OUTLOOK_DELETE_EVENT'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "userId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_DELETE_EVENT.userId",
+              "isRequired": false,
+              "label": "User Id",
+              "tooltipText": "User ID : Specify a user ID to perform this action if you are working with an application token. (example: \"1b671a64-40d5-491e-99b0-da01ff1f3341\")",
+              "placeholderText": "Enter User Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "eventId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_DELETE_EVENT.eventId",
+              "isRequired": true,
+              "label": "Event Id",
+              "tooltipText": "Event ID : The ID of the event to delete.",
+              "placeholderText": "Enter Event Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "calendarId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_DELETE_EVENT.calendarId",
+              "isRequired": false,
+              "label": "Calendar Id",
+              "tooltipText": "Calendar : Use Connect Portal Workflow Settings to allow users to select which calendar event will be deleted. Defaults to the user\u2019s primary calendar if left blank. (example: \"{{settings.calendar}}\")",
+              "placeholderText": "Enter Calendar Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "OUTLOOK_GET_MESSAGES",
+      "controlType": "SECTION_V2",
+      "name": "Get Messages",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'OUTLOOK_GET_MESSAGES'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "userId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_GET_MESSAGES.userId",
+              "isRequired": false,
+              "label": "User Id",
+              "tooltipText": "User ID : Specify a user ID to perform this action if you are working with an application token. (example: \"1b671a64-40d5-491e-99b0-da01ff1f3341\")",
+              "placeholderText": "Enter User Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "mailFolder",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_GET_MESSAGES.mailFolder",
+              "isRequired": false,
+              "label": "Mail Folder",
+              "tooltipText": "Mail Folder : Use Connect Portal Workflow Settings to allow users to select which mail folder to get messages from. Defaults to the user\u2019s primary mail folder if left blank. (example: \"{{settings.mailfolder}}\")",
+              "placeholderText": "Enter Mail Folder"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "messagesFilterFormula",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_GET_MESSAGES.messagesFilterFormula",
+              "isRequired": false,
+              "label": "Messages Filter Formula",
+              "tooltipText": "Filter messages based on the outlook filter formula. For example, \"subject eq 'Meeting'\"",
+              "placeholderText": "Enter Messages Filter Formula"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "limitResults",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_GET_MESSAGES.limitResults",
+              "isRequired": false,
+              "label": "Limit Results",
+              "tooltipText": "Limit Results : Limit the maximum number of messages to return. Defaults to 10 if left blank. Maximum is 1,000.",
+              "placeholderText": "Enter Limit Results"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "OUTLOOK_SEND_MESSAGE",
+      "controlType": "SECTION_V2",
+      "name": "Send Message",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'OUTLOOK_SEND_MESSAGE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "userId",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_SEND_MESSAGE.userId",
+              "isRequired": false,
+              "label": "User Id",
+              "tooltipText": "User ID : Specify a user ID to perform this action if you are working with an application token. (example: \"1b671a64-40d5-491e-99b0-da01ff1f3341\")",
+              "placeholderText": "Enter User Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "subject",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_SEND_MESSAGE.subject",
+              "isRequired": true,
+              "label": "Subject",
+              "tooltipText": "Subject : The text of the event\u2019s subject line.",
+              "placeholderText": "Enter Subject"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "messageBody",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_SEND_MESSAGE.messageBody",
+              "isRequired": true,
+              "label": "Message Body",
+              "tooltipText": "Message Body",
+              "placeholderText": "Enter Message Body"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "contentType",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_SEND_MESSAGE.contentType",
+              "isRequired": true,
+              "label": "Content Type",
+              "tooltipText": "Content Type",
+              "placeholderText": "Enter Content Type",
+              "options": [
+                {
+                  "label": "text",
+                  "value": "text"
+                },
+                {
+                  "label": "html",
+                  "value": "html"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "attachments",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_SEND_MESSAGE.attachments",
+              "isRequired": false,
+              "label": "Attachments",
+              "tooltipText": "Attachments : Accepts either a single file object or a JSON array of file objects (example: \"[{file object}, {file object}]\")",
+              "placeholderText": "Enter Attachments"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "toRecipients",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_SEND_MESSAGE.toRecipients",
+              "isRequired": true,
+              "label": "To Recipients",
+              "tooltipText": "To recipients : Accepts an array of email addresses or email addresses separated by commas.",
+              "placeholderText": "Enter To Recipients"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "ccRecipients",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_SEND_MESSAGE.ccRecipients",
+              "isRequired": false,
+              "label": "Cc Recipients",
+              "tooltipText": "CC recipients : Accepts an array of email addresses or email addresses separated by commas.",
+              "placeholderText": "Enter Cc Recipients"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "bccRecipients",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_SEND_MESSAGE.bccRecipients",
+              "isRequired": false,
+              "label": "Bcc Recipients",
+              "tooltipText": "BCC recipients : Accepts an array of email addresses or email addresses separated by commas.",
+              "placeholderText": "Enter Bcc Recipients"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "mailFolder",
+              "configProperty": "actionConfiguration.formData.OUTLOOK_SEND_MESSAGE.mailFolder",
+              "isRequired": false,
+              "label": "Mail Folder",
+              "tooltipText": "Mail Folder : Use Connect Portal Workflow Settings to allow users to select which mail folder to send from. Defaults to the user\u2019s primary mail folder if left blank. (example: \"{{settings.mailfolder}}\")",
+              "placeholderText": "Enter Mail Folder"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "CUSTOM_ACTION",
+      "controlType": "SECTION_V2",
+      "name": "Custom Action",
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "CUSTOM_ACTION_COLUMN",
+          "children": [
+            {
+              "label": "",
+              "Description": "",
+              "identifier": "CUSTOM_ACTION_FORM",
+              "subtitle": "",
+              "configProperty": "actionConfiguration.formData.CUSTOM_ACTION",
+              "controlType": "CUSTOM_ACTIONS_CONFIG_FORM"
+            }
+          ]
+        }
+      ],
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'CUSTOM_ACTION'}}"
+      }
+    }
+  ]
+}
