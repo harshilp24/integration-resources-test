@@ -1,0 +1,412 @@
+{
+  "editor": [
+    {
+      "controlType": "SECTION_V2",
+      "identifier": "SELECTOR",
+      "children": [
+        {
+          "controlType": "DOUBLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "label": "Commands",
+              "description": "Select the method to run",
+              "configProperty": "actionConfiguration.formData.command",
+              "controlType": "DROP_DOWN",
+              "isSearchable": true,
+              "options": [
+                {
+                  "index": 1,
+                  "label": "List Members",
+                  "value": "SLACK_LIST_MEMBERS"
+                },
+                {
+                  "index": 2,
+                  "label": "List Channels",
+                  "value": "SLACK_LIST_CHANNELS"
+                },
+                {
+                  "index": 3,
+                  "label": "Get User By Email",
+                  "value": "SLACK_GET_USER_BY_EMAIL"
+                },
+                {
+                  "index": 4,
+                  "label": "Search Messages",
+                  "value": "SLACK_SEARCH_MESSAGES"
+                },
+                {
+                  "index": 5,
+                  "label": "Send Direct Message",
+                  "value": "SLACK_SEND_DIRECT_MESSAGE"
+                },
+                {
+                  "index": 6,
+                  "label": "Send Message",
+                  "value": "SLACK_SEND_MESSAGE"
+                },
+                {
+                  "index": 7,
+                  "label": "Get Users By Name",
+                  "value": "SLACK_GET_USERS_BY_NAME"
+                },
+                {
+                  "index": 8,
+                  "label": "Custom Action",
+                  "value": "CUSTOM_ACTION"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "SLACK_LIST_MEMBERS",
+      "controlType": "SECTION_V2",
+      "name": "List Members",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'SLACK_LIST_MEMBERS'}}"
+      },
+      "children": []
+    },
+    {
+      "identifier": "SLACK_LIST_CHANNELS",
+      "controlType": "SECTION_V2",
+      "name": "List Channels",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'SLACK_LIST_CHANNELS'}}"
+      },
+      "children": []
+    },
+    {
+      "identifier": "SLACK_GET_USER_BY_EMAIL",
+      "controlType": "SECTION_V2",
+      "name": "Get User By Email",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'SLACK_GET_USER_BY_EMAIL'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "email",
+              "configProperty": "actionConfiguration.formData.SLACK_GET_USER_BY_EMAIL.email",
+              "isRequired": true,
+              "label": "Email",
+              "tooltipText": "Email : The email address of a user in the workspace.",
+              "placeholderText": "Enter Email"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "SLACK_SEARCH_MESSAGES",
+      "controlType": "SECTION_V2",
+      "name": "Search Messages",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'SLACK_SEARCH_MESSAGES'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "query",
+              "configProperty": "actionConfiguration.formData.SLACK_SEARCH_MESSAGES.query",
+              "isRequired": true,
+              "label": "Query",
+              "tooltipText": "Search Query : Search for messages that match specified Slack search query.",
+              "placeholderText": "Enter Query"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "SLACK_SEND_DIRECT_MESSAGE",
+      "controlType": "SECTION_V2",
+      "name": "Send Direct Message",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'SLACK_SEND_DIRECT_MESSAGE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "memberId",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_DIRECT_MESSAGE.memberId",
+              "isRequired": true,
+              "label": "Member Id",
+              "tooltipText": "Recipient : Use Connect Portal Workflow Settings to allow users to select a workspace member to DM. Defaults to the authenticated user if not provided. (example: \"{{settings.WorkspaceMember}}\")",
+              "placeholderText": "Enter Member Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "message",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_DIRECT_MESSAGE.message",
+              "isRequired": true,
+              "label": "Message",
+              "tooltipText": "Message",
+              "placeholderText": "Enter Message"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "botName",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_DIRECT_MESSAGE.botName",
+              "isRequired": true,
+              "label": "Bot Name",
+              "tooltipText": "Bot name : The name of the bot that sends this message.",
+              "placeholderText": "Enter Bot Name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "botIcon",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_DIRECT_MESSAGE.botIcon",
+              "isRequired": true,
+              "label": "Bot Icon",
+              "tooltipText": "Bot icon : Can be either an image URL or an emoji available to your team (e.g. :dog:)",
+              "placeholderText": "Enter Bot Icon"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "blocks",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_DIRECT_MESSAGE.blocks",
+              "isRequired": false,
+              "label": "Blocks",
+              "tooltipText": "Block kit JSON (example: \"[\n{\n\"text\": \"I am a test message\",\n\"attachments\": [\n  {\n    \"text\": \"And here\u2019s an attachment!\"\n  }\n]\n}\n]\")",
+              "placeholderText": "Enter Blocks"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "SWITCH",
+              "identifier": "authenticatedUser",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_DIRECT_MESSAGE.authenticatedUser",
+              "isRequired": false,
+              "label": "Authenticated User",
+              "tooltipText": "Send as authenticated user : If set to true, this message will appear to come from your authenticated Slack user instead of your application. Defaults to false.",
+              "placeholderText": "Enter Authenticated User"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "SLACK_SEND_MESSAGE",
+      "controlType": "SECTION_V2",
+      "name": "Send Message",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'SLACK_SEND_MESSAGE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "channel",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_MESSAGE.channel",
+              "isRequired": true,
+              "label": "Channel",
+              "tooltipText": "Channel : Use Connect Portal Workflow Settings to allow users to select a channel, or enter a channel name to create a new channel in the user\u2019s workspace. (example: \"{{settings.channel}}\")",
+              "placeholderText": "Enter Channel"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "message",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_MESSAGE.message",
+              "isRequired": true,
+              "label": "Message",
+              "tooltipText": "Message",
+              "placeholderText": "Enter Message"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "botName",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_MESSAGE.botName",
+              "isRequired": true,
+              "label": "Bot Name",
+              "tooltipText": "Bot name : The name of the bot that sends this message.",
+              "placeholderText": "Enter Bot Name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "botIcon",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_MESSAGE.botIcon",
+              "isRequired": true,
+              "label": "Bot Icon",
+              "tooltipText": "Bot icon : Can be either an image URL or an emoji available to your team (e.g. :dog:)",
+              "placeholderText": "Enter Bot Icon"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "blocks",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_MESSAGE.blocks",
+              "isRequired": false,
+              "label": "Blocks",
+              "tooltipText": "Block kit JSON (example: \"[\n{\n\"text\": \"I am a test message\",\n\"attachments\": [\n  {\n    \"text\": \"And here\u2019s an attachment!\"\n  }\n]\n}\n]\")",
+              "placeholderText": "Enter Blocks"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "SWITCH",
+              "identifier": "authenticatedUser",
+              "configProperty": "actionConfiguration.formData.SLACK_SEND_MESSAGE.authenticatedUser",
+              "isRequired": false,
+              "label": "Authenticated User",
+              "tooltipText": "Send as authenticated user : If set to true, this message will appear to come from your authenticated Slack user instead of your application. Defaults to false.",
+              "placeholderText": "Enter Authenticated User"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "SLACK_GET_USERS_BY_NAME",
+      "controlType": "SECTION_V2",
+      "name": "Get Users By Name",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'SLACK_GET_USERS_BY_NAME'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "name",
+              "configProperty": "actionConfiguration.formData.SLACK_GET_USERS_BY_NAME.name",
+              "isRequired": true,
+              "label": "Name",
+              "tooltipText": "Name",
+              "placeholderText": "Enter Name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "displayName",
+              "configProperty": "actionConfiguration.formData.SLACK_GET_USERS_BY_NAME.displayName",
+              "isRequired": false,
+              "label": "Display Name",
+              "tooltipText": "Display Name",
+              "placeholderText": "Enter Display Name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "paginationParameters",
+              "configProperty": "actionConfiguration.formData.SLACK_GET_USERS_BY_NAME.paginationParameters",
+              "isRequired": false,
+              "label": "Pagination Parameters",
+              "tooltipText": "Pagination Parameters",
+              "placeholderText": "Enter Pagination Parameters"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "CUSTOM_ACTION",
+      "controlType": "SECTION_V2",
+      "name": "Custom Action",
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "CUSTOM_ACTION_COLUMN",
+          "children": [
+            {
+              "label": "",
+              "Description": "",
+              "identifier": "CUSTOM_ACTION_FORM",
+              "subtitle": "",
+              "configProperty": "actionConfiguration.formData.CUSTOM_ACTION",
+              "controlType": "CUSTOM_ACTIONS_CONFIG_FORM"
+            }
+          ]
+        }
+      ],
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'CUSTOM_ACTION'}}"
+      }
+    }
+  ]
+}
