@@ -1,0 +1,1050 @@
+{
+  "editor": [
+    {
+      "controlType": "SECTION_V2",
+      "identifier": "SELECTOR",
+      "children": [
+        {
+          "controlType": "DOUBLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "label": "Commands",
+              "description": "Select the method to run",
+              "configProperty": "actionConfiguration.formData.command",
+              "controlType": "DROP_DOWN",
+              "isSearchable": true,
+              "options": [
+                {
+                  "index": 1,
+                  "label": "Create Issue",
+                  "value": "GITHUB_CREATE_ISSUE"
+                },
+                {
+                  "index": 2,
+                  "label": "Update Issue",
+                  "value": "GITHUB_UPDATE_ISSUE"
+                },
+                {
+                  "index": 3,
+                  "label": "Get Issue By Number",
+                  "value": "GITHUB_GET_ISSUE_BY_NUMBER"
+                },
+                {
+                  "index": 4,
+                  "label": "Lock Issue",
+                  "value": "GITHUB_LOCK_ISSUE"
+                },
+                {
+                  "index": 5,
+                  "label": "Search Issue",
+                  "value": "GITHUB_SEARCH_ISSUE"
+                },
+                {
+                  "index": 6,
+                  "label": "Create Release",
+                  "value": "GITHUB_CREATE_RELEASE"
+                },
+                {
+                  "index": 7,
+                  "label": "Update Release",
+                  "value": "GITHUB_UPDATE_RELEASE"
+                },
+                {
+                  "index": 8,
+                  "label": "Get Release By Id",
+                  "value": "GITHUB_GET_RELEASE_BY_ID"
+                },
+                {
+                  "index": 9,
+                  "label": "Get Release By Tag Name",
+                  "value": "GITHUB_GET_RELEASE_BY_TAG_NAME"
+                },
+                {
+                  "index": 10,
+                  "label": "Delete Release",
+                  "value": "GITHUB_DELETE_RELEASE"
+                },
+                {
+                  "index": 11,
+                  "label": "Custom Action",
+                  "value": "CUSTOM_ACTION"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GITHUB_CREATE_ISSUE",
+      "controlType": "SECTION_V2",
+      "name": "Create Issue",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GITHUB_CREATE_ISSUE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "owner",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_ISSUE.owner",
+              "isRequired": true,
+              "label": "Owner",
+              "tooltipText": "Owner: Enter the account owner's name for the relevant repository. (e.g., \"abc\")",
+              "placeholderText": "Owner's name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "repo",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_ISSUE.repo",
+              "isRequired": true,
+              "label": "Repo",
+              "tooltipText": "Repository: Enter the name of the repository associated with this issue.",
+              "placeholderText": "Repository name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "title",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_ISSUE.title",
+              "isRequired": true,
+              "label": "Title",
+              "tooltipText": "Issue Title: Provide the title for the issue to create.",
+              "placeholderText": "Issue title"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "body",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_ISSUE.body",
+              "isRequired": false,
+              "label": "Body",
+              "tooltipText": "Issue Body: Provide the content for the issue's body.",
+              "placeholderText": "Issue body"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "assignees",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_ISSUE.assignees",
+              "isRequired": false,
+              "label": "Assignees",
+              "tooltipText": "Assignees: Enter the GitHub logins of assignees as an array of strings for this issue. (e.g., [\"octocat\"])",
+              "placeholderText": "Assignee logins"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GITHUB_UPDATE_ISSUE",
+      "controlType": "SECTION_V2",
+      "name": "Update Issue",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GITHUB_UPDATE_ISSUE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "owner",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_ISSUE.owner",
+              "isRequired": true,
+              "label": "Owner",
+              "tooltipText": "Owner: Enter the account owner's name for the relevant repository. (e.g., \"abc\")",
+              "placeholderText": "Owner's name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "repo",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_ISSUE.repo",
+              "isRequired": true,
+              "label": "Repo",
+              "tooltipText": "Repository: Enter the name of the repository associated with this issue.",
+              "placeholderText": "Repository name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "issue_number",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_ISSUE.issue_number",
+              "isRequired": true,
+              "label": "Issue Number",
+              "tooltipText": "Issue Number: Enter the issue number you wish to update.",
+              "placeholderText": "Issue number"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "title",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_ISSUE.title",
+              "isRequired": true,
+              "label": "Title",
+              "tooltipText": "Issue Title: Provide the title for the issue to update.",
+              "placeholderText": "Issue title"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "body",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_ISSUE.body",
+              "isRequired": false,
+              "label": "Body",
+              "tooltipText": "Issue Body: Provide the content for the issue's body.",
+              "placeholderText": "Issue body"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "assignees",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_ISSUE.assignees",
+              "isRequired": false,
+              "label": "Assignees",
+              "tooltipText": "Assignees: Enter the GitHub logins of assignees as an array of strings for this issue. (e.g., [\"octocat\"])",
+              "placeholderText": "Assignee logins"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "state",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_ISSUE.state",
+              "isRequired": false,
+              "label": "State",
+              "tooltipText": "State: Specify the new state of the issue.",
+              "placeholderText": "Issue state",
+              "options": [
+                {
+                  "label": "open",
+                  "value": "open"
+                },
+                {
+                  "label": "closed",
+                  "value": "closed"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GITHUB_GET_ISSUE_BY_NUMBER",
+      "controlType": "SECTION_V2",
+      "name": "Get Issue By Number",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GITHUB_GET_ISSUE_BY_NUMBER'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "owner",
+              "configProperty": "actionConfiguration.formData.GITHUB_GET_ISSUE_BY_NUMBER.owner",
+              "isRequired": true,
+              "label": "Owner",
+              "tooltipText": "Owner: Enter the account owner's name for the relevant repository. (e.g., \"abc\")",
+              "placeholderText": "Owner's name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "repo",
+              "configProperty": "actionConfiguration.formData.GITHUB_GET_ISSUE_BY_NUMBER.repo",
+              "isRequired": true,
+              "label": "Repo",
+              "tooltipText": "Repository: Enter the name of the repository associated with this issue.",
+              "placeholderText": "Repository name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "issue_number",
+              "configProperty": "actionConfiguration.formData.GITHUB_GET_ISSUE_BY_NUMBER.issue_number",
+              "isRequired": true,
+              "label": "Issue Number",
+              "tooltipText": "Issue Number: Enter the issue number to fetch.",
+              "placeholderText": "Issue number"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GITHUB_LOCK_ISSUE",
+      "controlType": "SECTION_V2",
+      "name": "Lock Issue",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GITHUB_LOCK_ISSUE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "owner",
+              "configProperty": "actionConfiguration.formData.GITHUB_LOCK_ISSUE.owner",
+              "isRequired": true,
+              "label": "Owner",
+              "tooltipText": "Owner: Enter the account owner's name for the relevant repository. (e.g., \"abc\")",
+              "placeholderText": "Owner's name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "repo",
+              "configProperty": "actionConfiguration.formData.GITHUB_LOCK_ISSUE.repo",
+              "isRequired": true,
+              "label": "Repo",
+              "tooltipText": "Repository: Enter the name of the repository associated with this issue.",
+              "placeholderText": "Repository name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "issue_number",
+              "configProperty": "actionConfiguration.formData.GITHUB_LOCK_ISSUE.issue_number",
+              "isRequired": true,
+              "label": "Issue Number",
+              "tooltipText": "Issue Number: Enter the issue number to lock.",
+              "placeholderText": "Issue number"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "lock_reason",
+              "configProperty": "actionConfiguration.formData.GITHUB_LOCK_ISSUE.lock_reason",
+              "isRequired": true,
+              "label": "Lock Reason",
+              "tooltipText": "Lock Reason: Provide a reason for locking the issue or conversation.",
+              "placeholderText": "Lock reason",
+              "options": [
+                {
+                  "label": "off-topic",
+                  "value": "off-topic"
+                },
+                {
+                  "label": "too heated",
+                  "value": "too heated"
+                },
+                {
+                  "label": "resolved",
+                  "value": "resolved"
+                },
+                {
+                  "label": "spam",
+                  "value": "spam"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GITHUB_SEARCH_ISSUE",
+      "controlType": "SECTION_V2",
+      "name": "Search Issue",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GITHUB_SEARCH_ISSUE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "owner",
+              "configProperty": "actionConfiguration.formData.GITHUB_SEARCH_ISSUE.owner",
+              "isRequired": true,
+              "label": "Owner",
+              "tooltipText": "Owner: Enter the account owner's name for the relevant repository. (e.g., \"abc\")",
+              "placeholderText": "Owner's name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "repo",
+              "configProperty": "actionConfiguration.formData.GITHUB_SEARCH_ISSUE.repo",
+              "isRequired": true,
+              "label": "Repo",
+              "tooltipText": "Repository: Enter the name of the repository associated with this issue.",
+              "placeholderText": "Repository name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "filter",
+              "configProperty": "actionConfiguration.formData.GITHUB_SEARCH_ISSUE.filter",
+              "isRequired": true,
+              "label": "Filter",
+              "tooltipText": "Filter Search: Enter the search criteria for issues with specified filters.",
+              "placeholderText": "Search criteria"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GITHUB_CREATE_RELEASE",
+      "controlType": "SECTION_V2",
+      "name": "Create Release",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GITHUB_CREATE_RELEASE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "owner",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_RELEASE.owner",
+              "isRequired": true,
+              "label": "Owner",
+              "tooltipText": "Owner: Enter the account owner's name for the relevant repository. (e.g., \"abc\")",
+              "placeholderText": "Owner's name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "repo",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_RELEASE.repo",
+              "isRequired": true,
+              "label": "Repo",
+              "tooltipText": "Repository: Enter the name of the repository associated with this release.",
+              "placeholderText": "Repository name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "tag_name",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_RELEASE.tag_name",
+              "isRequired": true,
+              "label": "Tag Name",
+              "tooltipText": "Name: Enter the name of the release tag to be created. (e.g., \"v1.0.0\")",
+              "placeholderText": "Tag name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "target_commitish",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_RELEASE.target_commitish",
+              "isRequired": false,
+              "label": "Target Commitish",
+              "tooltipText": "Target: Specify the target for the release. This can be a branch name or a commit SHA. Defaults to the main branch. (e.g., \"main\")",
+              "placeholderText": "Branch/Commit SHA"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "body",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_RELEASE.body",
+              "isRequired": false,
+              "label": "Body",
+              "tooltipText": "Body: Enter a description for this release.",
+              "placeholderText": "Release description"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "draft",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_RELEASE.draft",
+              "isRequired": false,
+              "label": "Draft",
+              "tooltipText": "Draft: Indicate if the release should be a draft (unpublished).",
+              "placeholderText": "Is draft?",
+              "options": [
+                {
+                  "label": "true",
+                  "value": "true"
+                },
+                {
+                  "label": "false",
+                  "value": "false"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "prerelease",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_RELEASE.prerelease",
+              "isRequired": false,
+              "label": "Prerelease",
+              "tooltipText": "Prerelease: Indicate if the release is a prerelease.",
+              "placeholderText": "Is prerelease?",
+              "options": [
+                {
+                  "label": "true",
+                  "value": "true"
+                },
+                {
+                  "label": "false",
+                  "value": "false"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "discussion_category_name",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_RELEASE.discussion_category_name",
+              "isRequired": false,
+              "label": "Discussion Category Name",
+              "tooltipText": "Discussion Category Name: If given, creates a discussion in the specified category linked to the release. Must match an existing category in the repository.",
+              "placeholderText": "Discussion category name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "generate_release_notes",
+              "configProperty": "actionConfiguration.formData.GITHUB_CREATE_RELEASE.generate_release_notes",
+              "isRequired": false,
+              "label": "Generate Release Notes",
+              "tooltipText": "Release Notes: Indicate if the release should auto-generate notes using the specified name and body.",
+              "placeholderText": "Generate notes?",
+              "options": [
+                {
+                  "label": "true",
+                  "value": "true"
+                },
+                {
+                  "label": "false",
+                  "value": "false"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GITHUB_UPDATE_RELEASE",
+      "controlType": "SECTION_V2",
+      "name": "Update Release",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GITHUB_UPDATE_RELEASE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "owner",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_RELEASE.owner",
+              "isRequired": true,
+              "label": "Owner",
+              "tooltipText": "Owner: Enter the account owner's name for the relevant repository. (e.g., \"abc\")",
+              "placeholderText": "Owner's name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "repo",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_RELEASE.repo",
+              "isRequired": true,
+              "label": "Repo",
+              "tooltipText": "Repository: Enter the name of the repository associated with this release.",
+              "placeholderText": "Repository name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "id",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_RELEASE.id",
+              "isRequired": true,
+              "label": "Id",
+              "tooltipText": "Release ID: Enter the ID of the release to update.",
+              "placeholderText": "Release ID"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "tag_name",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_RELEASE.tag_name",
+              "isRequired": false,
+              "label": "Tag Name",
+              "tooltipText": "Name: Enter the name of the release tag to be updated. (e.g., \"v1.0.0\")",
+              "placeholderText": "Tag name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "target_commitish",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_RELEASE.target_commitish",
+              "isRequired": false,
+              "label": "Target Commitish",
+              "tooltipText": "Target: Specify the target for the release. This can be a branch name or a commit SHA. Defaults to the main branch. (e.g., \"main\")",
+              "placeholderText": "Branch/Commit SHA"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "body",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_RELEASE.body",
+              "isRequired": false,
+              "label": "Body",
+              "tooltipText": "Body: Enter a description for this release.",
+              "placeholderText": "Release description"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "draft",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_RELEASE.draft",
+              "isRequired": false,
+              "label": "Draft",
+              "tooltipText": "Draft: Indicate if the release should be a draft (unpublished).",
+              "placeholderText": "Is draft?",
+              "options": [
+                {
+                  "label": "true",
+                  "value": "true"
+                },
+                {
+                  "label": "false",
+                  "value": "false"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "prerelease",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_RELEASE.prerelease",
+              "isRequired": false,
+              "label": "Prerelease",
+              "tooltipText": "Prerelease: Indicate if the release is a prerelease.",
+              "placeholderText": "Is prerelease?",
+              "options": [
+                {
+                  "label": "true",
+                  "value": "true"
+                },
+                {
+                  "label": "false",
+                  "value": "false"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "discussion_category_name",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_RELEASE.discussion_category_name",
+              "isRequired": false,
+              "label": "Discussion Category Name",
+              "tooltipText": "Discussion Category Name: If given, creates a discussion in the specified category linked to the release. Must match an existing category in the repository.",
+              "placeholderText": "Discussion category name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "generate_release_notes",
+              "configProperty": "actionConfiguration.formData.GITHUB_UPDATE_RELEASE.generate_release_notes",
+              "isRequired": false,
+              "label": "Generate Release Notes",
+              "tooltipText": "Release Notes: Indicate if the release should auto-generate notes using the specified name and body.",
+              "placeholderText": "Generate notes?",
+              "options": [
+                {
+                  "label": "true",
+                  "value": "true"
+                },
+                {
+                  "label": "false",
+                  "value": "false"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GITHUB_GET_RELEASE_BY_ID",
+      "controlType": "SECTION_V2",
+      "name": "Get Release By Id",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GITHUB_GET_RELEASE_BY_ID'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "owner",
+              "configProperty": "actionConfiguration.formData.GITHUB_GET_RELEASE_BY_ID.owner",
+              "isRequired": true,
+              "label": "Owner",
+              "tooltipText": "Owner: Enter the account owner's name for the relevant repository. (e.g., \"abc\")",
+              "placeholderText": "Owner's name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "repo",
+              "configProperty": "actionConfiguration.formData.GITHUB_GET_RELEASE_BY_ID.repo",
+              "isRequired": true,
+              "label": "Repo",
+              "tooltipText": "Repository: Enter the name of the repository associated with this issue.",
+              "placeholderText": "Repository name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "id",
+              "configProperty": "actionConfiguration.formData.GITHUB_GET_RELEASE_BY_ID.id",
+              "isRequired": true,
+              "label": "Id",
+              "tooltipText": "Release ID: Enter the release ID to fetch.",
+              "placeholderText": "Release ID"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GITHUB_GET_RELEASE_BY_TAG_NAME",
+      "controlType": "SECTION_V2",
+      "name": "Get Release By Tag Name",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GITHUB_GET_RELEASE_BY_TAG_NAME'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "owner",
+              "configProperty": "actionConfiguration.formData.GITHUB_GET_RELEASE_BY_TAG_NAME.owner",
+              "isRequired": true,
+              "label": "Owner",
+              "tooltipText": "Owner: Enter the account owner's name for the relevant repository. (e.g., \"abc\")",
+              "placeholderText": "Owner's name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "repo",
+              "configProperty": "actionConfiguration.formData.GITHUB_GET_RELEASE_BY_TAG_NAME.repo",
+              "isRequired": true,
+              "label": "Repo",
+              "tooltipText": "Repository: Enter the name of the repository associated with this issue.",
+              "placeholderText": "Repository name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "tag_name",
+              "configProperty": "actionConfiguration.formData.GITHUB_GET_RELEASE_BY_TAG_NAME.tag_name",
+              "isRequired": true,
+              "label": "Tag Name",
+              "tooltipText": "Name: Enter the tag of the release to fetch. (e.g., \"v1.0.0\")",
+              "placeholderText": "Tag name"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "GITHUB_DELETE_RELEASE",
+      "controlType": "SECTION_V2",
+      "name": "Delete Release",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'GITHUB_DELETE_RELEASE'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "owner",
+              "configProperty": "actionConfiguration.formData.GITHUB_DELETE_RELEASE.owner",
+              "isRequired": true,
+              "label": "Owner",
+              "tooltipText": "Owner: Enter the account owner's name for the relevant repository. (e.g., \"abc\")",
+              "placeholderText": "Owner's name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "repo",
+              "configProperty": "actionConfiguration.formData.GITHUB_DELETE_RELEASE.repo",
+              "isRequired": true,
+              "label": "Repo",
+              "tooltipText": "Repository: Enter the name of the repository associated with this issue.",
+              "placeholderText": "Repository name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "id",
+              "configProperty": "actionConfiguration.formData.GITHUB_DELETE_RELEASE.id",
+              "isRequired": true,
+              "label": "Id",
+              "tooltipText": "Release ID: Enter the ID of the release to delete.",
+              "placeholderText": "Release ID"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "CUSTOM_ACTION",
+      "controlType": "SECTION_V2",
+      "name": "Custom Action",
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "CUSTOM_ACTION_COLUMN",
+          "children": [
+            {
+              "label": "",
+              "Description": "",
+              "identifier": "CUSTOM_ACTION_FORM",
+              "subtitle": "",
+              "configProperty": "actionConfiguration.formData.CUSTOM_ACTION",
+              "controlType": "CUSTOM_ACTIONS_CONFIG_FORM"
+            }
+          ]
+        }
+      ],
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'CUSTOM_ACTION'}}"
+      }
+    }
+  ]
+}
