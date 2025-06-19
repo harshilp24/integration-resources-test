@@ -17,61 +17,66 @@
               "options": [
                 {
                   "index": 1,
-                  "label": "Create Issue",
-                  "value": "JIRA_CREATE_ISSUE"
+                  "label": "Create Comment",
+                  "value": "ASANA_CREATE_COMMENT"
                 },
                 {
                   "index": 2,
-                  "label": "Update Issue",
-                  "value": "JIRA_UPDATE_ISSUE"
+                  "label": "Create Project",
+                  "value": "ASANA_CREATE_PROJECT"
                 },
                 {
                   "index": 3,
-                  "label": "Get Issue By Key",
-                  "value": "JIRA_GET_ISSUE_BY_KEY"
+                  "label": "Get Projects",
+                  "value": "ASANA_GET_PROJECTS"
                 },
                 {
                   "index": 4,
-                  "label": "Filter Issues",
-                  "value": "JIRA_FILTER_ISSUES"
+                  "label": "Get Project By Id",
+                  "value": "ASANA_GET_PROJECT_BY_ID"
                 },
                 {
                   "index": 5,
-                  "label": "Search By Jql",
-                  "value": "JIRA_SEARCH_BY_JQL"
+                  "label": "Create Task",
+                  "value": "ASANA_CREATE_TASK"
                 },
                 {
                   "index": 6,
-                  "label": "Get Projects",
-                  "value": "JIRA_GET_PROJECTS"
+                  "label": "Update Task",
+                  "value": "ASANA_UPDATE_TASK"
                 },
                 {
                   "index": 7,
-                  "label": "Get Issue Types By Project",
-                  "value": "JIRA_GET_ISSUE_TYPES_BY_PROJECT"
+                  "label": "Get Tasks",
+                  "value": "ASANA_GET_TASKS"
                 },
                 {
                   "index": 8,
-                  "label": "Get Issue Types",
-                  "value": "JIRA_GET_ISSUE_TYPES"
+                  "label": "Get Tasks By Id",
+                  "value": "ASANA_GET_TASKS_BY_ID"
                 },
                 {
                   "index": 9,
-                  "label": "Describe Action Schema",
-                  "value": "JIRA_DESCRIBE_ACTION_SCHEMA"
+                  "label": "Get Task By External Id",
+                  "value": "ASANA_GET_TASK_BY_EXTERNAL_ID"
                 },
                 {
                   "index": 10,
-                  "label": "Get Issue Status By Project",
-                  "value": "JIRA_GET_ISSUE_STATUS_BY_PROJECT"
+                  "label": "Add Task To Section",
+                  "value": "ASANA_ADD_TASK_TO_SECTION"
                 },
                 {
                   "index": 11,
-                  "label": "Get All Assignees By Project",
-                  "value": "JIRA_GET_ALL_ASSIGNEES_BY_PROJECT"
+                  "label": "Get Teams",
+                  "value": "ASANA_GET_TEAMS"
                 },
                 {
                   "index": 12,
+                  "label": "Get Workspaces",
+                  "value": "ASANA_GET_WORKSPACES"
+                },
+                {
+                  "index": 13,
                   "label": "Custom Action",
                   "value": "CUSTOM_ACTION"
                 }
@@ -82,11 +87,11 @@
       ]
     },
     {
-      "identifier": "JIRA_CREATE_ISSUE",
+      "identifier": "ASANA_CREATE_COMMENT",
       "controlType": "SECTION_V2",
-      "name": "Create Issue",
+      "name": "Create Comment",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'JIRA_CREATE_ISSUE'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_CREATE_COMMENT'}}"
       },
       "children": [
         {
@@ -95,12 +100,12 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "summary",
-              "configProperty": "actionConfiguration.formData.JIRA_CREATE_ISSUE.summary",
+              "identifier": "task",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_COMMENT.task",
               "isRequired": true,
-              "label": "Summary",
-              "tooltipText": "Summary : A brief one-line summary of the issue. (example: \"The printer stopped working\")",
-              "placeholderText": "Enter Summary"
+              "label": "Task",
+              "tooltipText": "Task ID : The ID of the Task the comment will be added to. The comment will be authored by the currently authenticated user.",
+              "placeholderText": "Enter Task"
             }
           ]
         },
@@ -110,295 +115,23 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "project",
-              "configProperty": "actionConfiguration.formData.JIRA_CREATE_ISSUE.project",
-              "isRequired": false,
-              "label": "Project",
-              "tooltipText": "Project : The project which the issue belongs to. Defaults to the user\u2019s first project if not provided. Use Connect Portal Workflow Settings to allow users to select a Project. (example: \"{{settings.project}}\")",
-              "placeholderText": "Enter Project"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "issueType",
-              "configProperty": "actionConfiguration.formData.JIRA_CREATE_ISSUE.issueType",
-              "isRequired": false,
-              "label": "Issue Type",
-              "tooltipText": "Issue type : Defaults to Task if not provided. (example: \"{{settings.issueType}}\")",
-              "placeholderText": "Enter Issue Type"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "jiraIssueStatus",
-              "configProperty": "actionConfiguration.formData.JIRA_CREATE_ISSUE.jiraIssueStatus",
-              "isRequired": false,
-              "label": "Jira Issue Status",
-              "tooltipText": "Status : Defaults to the project\u2019s first status if not provided. (example: \"{{settings.status}}\")",
-              "placeholderText": "Enter Jira Issue Status"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "assignee",
-              "configProperty": "actionConfiguration.formData.JIRA_CREATE_ISSUE.assignee",
-              "isRequired": false,
-              "label": "Assignee",
-              "tooltipText": "Assignee : Defaults to the authenticated user if not provided. (example: \"{{settings.assignee}}\")",
-              "placeholderText": "Enter Assignee"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "DROP_DOWN",
-              "identifier": "descriptionType",
-              "configProperty": "actionConfiguration.formData.JIRA_CREATE_ISSUE.descriptionType",
-              "isRequired": false,
-              "label": "Description Type",
-              "tooltipText": "Description Type : Select the Description Type.",
-              "placeholderText": "Enter Description Type",
-              "options": [
-                {
-                  "label": "descriptionJSON",
-                  "value": "descriptionJSON"
-                },
-                {
-                  "label": "description",
-                  "value": "description"
-                }
-              ],
-              "isAllowClear": true
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "descriptionJSON",
-              "configProperty": "actionConfiguration.formData.JIRA_CREATE_ISSUE.descriptionJSON",
-              "isRequired": false,
-              "label": "Description J S O N",
-              "tooltipText": "Description JSON (example: \"{\n  \"version\": 1,\n  \"type\": \"doc\",\n  \"content\": [\n    {\n      \"type\": \"paragraph\",\n      \"content\": [\n        {\n          \"type\": \"text\",\n          \"text\": \"Hello\",\n          \"marks\": [\n            {\n              \"type\": \"strong\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}\") \nThis field appears only when 'descriptionType' = 'descriptionJSON')",
-              "placeholderText": "Enter Description J S O N"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "description",
-              "configProperty": "actionConfiguration.formData.JIRA_CREATE_ISSUE.description",
-              "isRequired": false,
-              "label": "Description",
-              "tooltipText": "Description : A detailed description of the issue.",
-              "placeholderText": "Enter Description"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "additionalFields",
-              "configProperty": "actionConfiguration.formData.JIRA_CREATE_ISSUE.additionalFields",
-              "isRequired": false,
-              "label": "Additional Fields",
-              "tooltipText": "Additional Fields : Specify any other fields that should be included in JSON below. Use Connect Portal Workflow Settings to allow users to select which Issue Fields to update. (example: \"{\n    \"{{settings.ExternalID}}\": \"...\"\n}\n                \")",
-              "placeholderText": "Enter Additional Fields"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "identifier": "JIRA_UPDATE_ISSUE",
-      "controlType": "SECTION_V2",
-      "name": "Update Issue",
-      "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'JIRA_UPDATE_ISSUE'}}"
-      },
-      "children": [
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "issueKey",
-              "configProperty": "actionConfiguration.formData.JIRA_UPDATE_ISSUE.issueKey",
+              "identifier": "text",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_COMMENT.text",
               "isRequired": true,
-              "label": "Issue Key",
-              "tooltipText": "Issue Key (example: \"TEST-1234\")",
-              "placeholderText": "Enter Issue Key"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "summary",
-              "configProperty": "actionConfiguration.formData.JIRA_UPDATE_ISSUE.summary",
-              "isRequired": false,
-              "label": "Summary",
-              "tooltipText": "Summary : A brief one-line summary of the issue. (example: \"The printer stopped working\")",
-              "placeholderText": "Enter Summary"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "issueType",
-              "configProperty": "actionConfiguration.formData.JIRA_UPDATE_ISSUE.issueType",
-              "isRequired": false,
-              "label": "Issue Type",
-              "tooltipText": "Issue type : Use Connect Portal Workflow Settings to allow users to select an Issue Type. (example: \"{{settings.issueType}}\")",
-              "placeholderText": "Enter Issue Type"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "jiraIssueStatus",
-              "configProperty": "actionConfiguration.formData.JIRA_UPDATE_ISSUE.jiraIssueStatus",
-              "isRequired": false,
-              "label": "Jira Issue Status",
-              "tooltipText": "Status : Use Connect Portal Workflow Settings to allow users to select a Status. (example: \"{{settings.status}}\")",
-              "placeholderText": "Enter Jira Issue Status"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "assignee",
-              "configProperty": "actionConfiguration.formData.JIRA_UPDATE_ISSUE.assignee",
-              "isRequired": false,
-              "label": "Assignee",
-              "tooltipText": "Assignee : Use Connect Portal Workflow Settings to allow users to select an Assignee. (example: \"{{settings.assignee}}\")",
-              "placeholderText": "Enter Assignee"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "DROP_DOWN",
-              "identifier": "descriptionType",
-              "configProperty": "actionConfiguration.formData.JIRA_UPDATE_ISSUE.descriptionType",
-              "isRequired": false,
-              "label": "Description Type",
-              "tooltipText": "Description Type : Select the Description Type.",
-              "placeholderText": "Enter Description Type",
-              "options": [
-                {
-                  "label": "descriptionJSON",
-                  "value": "descriptionJSON"
-                },
-                {
-                  "label": "description",
-                  "value": "description"
-                }
-              ],
-              "isAllowClear": true
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "descriptionJSON",
-              "configProperty": "actionConfiguration.formData.JIRA_UPDATE_ISSUE.descriptionJSON",
-              "isRequired": false,
-              "label": "Description J S O N",
-              "tooltipText": "Description JSON (example: \"{\n  \"version\": 1,\n  \"type\": \"doc\",\n  \"content\": [\n    {\n      \"type\": \"paragraph\",\n      \"content\": [\n        {\n          \"type\": \"text\",\n          \"text\": \"Hello\",\n          \"marks\": [\n            {\n              \"type\": \"strong\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}\") \nThis field appears only when 'descriptionType' = 'descriptionJSON')",
-              "placeholderText": "Enter Description J S O N"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "description",
-              "configProperty": "actionConfiguration.formData.JIRA_UPDATE_ISSUE.description",
-              "isRequired": false,
-              "label": "Description",
-              "tooltipText": "Description : A detailed description of the issue.",
-              "placeholderText": "Enter Description"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "additionalFields",
-              "configProperty": "actionConfiguration.formData.JIRA_UPDATE_ISSUE.additionalFields",
-              "isRequired": false,
-              "label": "Additional Fields",
-              "tooltipText": "Additional Fields : Specify any other fields that should be included in JSON below. Use Connect Portal Workflow Settings to allow users to select which Issue Fields to update. (example: \"{\n    \"{{settings.ExternalID}}\": \"...\"\n}\n                \")",
-              "placeholderText": "Enter Additional Fields"
+              "label": "Text",
+              "tooltipText": "Text (example: \"This is a comment.\")",
+              "placeholderText": "Enter Text"
             }
           ]
         }
       ]
     },
     {
-      "identifier": "JIRA_GET_ISSUE_BY_KEY",
+      "identifier": "ASANA_CREATE_PROJECT",
       "controlType": "SECTION_V2",
-      "name": "Get Issue By Key",
+      "name": "Create Project",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'JIRA_GET_ISSUE_BY_KEY'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_CREATE_PROJECT'}}"
       },
       "children": [
         {
@@ -407,37 +140,12 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "issueKey",
-              "configProperty": "actionConfiguration.formData.JIRA_GET_ISSUE_BY_KEY.issueKey",
+              "identifier": "name",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_PROJECT.name",
               "isRequired": true,
-              "label": "Issue Key",
-              "tooltipText": "Issue Key (example: \"TEST-1234\")",
-              "placeholderText": "Enter Issue Key"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "identifier": "JIRA_FILTER_ISSUES",
-      "controlType": "SECTION_V2",
-      "name": "Filter Issues",
-      "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'JIRA_FILTER_ISSUES'}}"
-      },
-      "children": [
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "jqlQuery",
-              "configProperty": "actionConfiguration.formData.JIRA_FILTER_ISSUES.jqlQuery",
-              "isRequired": false,
-              "label": "Jql Query",
-              "tooltipText": "Filter Search : Search for issue that match specified filters. (example: \"field\")",
-              "placeholderText": "Enter Jql Query"
+              "label": "Name",
+              "tooltipText": "Name (example: \"Stuff to buy\")",
+              "placeholderText": "Enter Name"
             }
           ]
         },
@@ -447,37 +155,12 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "limit",
-              "configProperty": "actionConfiguration.formData.JIRA_FILTER_ISSUES.limit",
-              "isRequired": false,
-              "label": "Limit",
-              "tooltipText": "Limit results : Limit the maximum number of issues to return. Defaults to 10 if left blank.",
-              "placeholderText": "Enter Limit"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "identifier": "JIRA_SEARCH_BY_JQL",
-      "controlType": "SECTION_V2",
-      "name": "Search By Jql",
-      "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'JIRA_SEARCH_BY_JQL'}}"
-      },
-      "children": [
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "jqlQuery",
-              "configProperty": "actionConfiguration.formData.JIRA_SEARCH_BY_JQL.jqlQuery",
+              "identifier": "workspace",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_PROJECT.workspace",
               "isRequired": true,
-              "label": "Jql Query",
-              "tooltipText": "JQL Query (example: \"project = PROJECT\")",
-              "placeholderText": "Enter Jql Query"
+              "label": "Workspace",
+              "tooltipText": "Workspace : Use Connect Portal Workflow Settings to allow users to select which Workspace to create Projects in. Defaults to the user\u2019s first Workspace if left blank. (example: \"{{settings.workspace}}\")",
+              "placeholderText": "Enter Workspace"
             }
           ]
         },
@@ -487,23 +170,78 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "paginationParameters",
-              "configProperty": "actionConfiguration.formData.JIRA_SEARCH_BY_JQL.paginationParameters",
+              "identifier": "team",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_PROJECT.team",
               "isRequired": false,
-              "label": "Pagination Parameters",
-              "tooltipText": "Pagination parameters for paginated results",
-              "placeholderText": "Enter Pagination Parameters"
+              "label": "Team",
+              "tooltipText": "Team : Use Connect Portal Workflow Settings to allow users to select which Team to share this Project with. Defaults to the user\u2019s first Team if left blank. (example: \"{{settings.team}}\")",
+              "placeholderText": "Enter Team"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "notes",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_PROJECT.notes",
+              "isRequired": false,
+              "label": "Notes",
+              "tooltipText": "Notes (example: \"These are things we need to purchase.\")",
+              "placeholderText": "Enter Notes"
             }
           ]
         }
       ]
     },
     {
-      "identifier": "JIRA_GET_PROJECTS",
+      "identifier": "ASANA_GET_PROJECTS",
       "controlType": "SECTION_V2",
       "name": "Get Projects",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'JIRA_GET_PROJECTS'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_PROJECTS'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "archived",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_PROJECTS.archived",
+              "isRequired": false,
+              "label": "Archived",
+              "tooltipText": "Archived : Choose Yes to show archived projects. Select No to display only active projects and The Default option will show both archived and active projects.",
+              "placeholderText": "Enter Archived",
+              "options": [
+                {
+                  "label": "default",
+                  "value": "default"
+                },
+                {
+                  "label": "true",
+                  "value": "true"
+                },
+                {
+                  "label": "false",
+                  "value": "false"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ASANA_GET_PROJECT_BY_ID",
+      "controlType": "SECTION_V2",
+      "name": "Get Project By Id",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_PROJECT_BY_ID'}}"
       },
       "children": [
         {
@@ -512,25 +250,55 @@
           "children": [
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "paginationParameters",
-              "configProperty": "actionConfiguration.formData.JIRA_GET_PROJECTS.paginationParameters",
-              "isRequired": false,
-              "label": "Pagination Parameters",
-              "tooltipText": "Pagination Parameters",
-              "placeholderText": "Enter Pagination Parameters"
+              "identifier": "projectFilterId",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_PROJECT_BY_ID.projectFilterId",
+              "isRequired": true,
+              "label": "Project Filter Id",
+              "tooltipText": "Project ID",
+              "placeholderText": "Enter Project Filter Id"
             }
           ]
         }
       ]
     },
     {
-      "identifier": "JIRA_GET_ISSUE_TYPES_BY_PROJECT",
+      "identifier": "ASANA_CREATE_TASK",
       "controlType": "SECTION_V2",
-      "name": "Get Issue Types By Project",
+      "name": "Create Task",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'JIRA_GET_ISSUE_TYPES_BY_PROJECT'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_CREATE_TASK'}}"
       },
       "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "name",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.name",
+              "isRequired": true,
+              "label": "Name",
+              "tooltipText": "Name (example: \"Task Name\")",
+              "placeholderText": "Enter Name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "workspace",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.workspace",
+              "isRequired": false,
+              "label": "Workspace",
+              "tooltipText": "Workspace : Use Connect Portal Workflow Settings to allow users to select which Workspace to create Tasks in. Defaults to the user\u2019s first Workspace if left blank. (example: \"{{settings.workspace}}\")",
+              "placeholderText": "Enter Workspace"
+            }
+          ]
+        },
         {
           "controlType": "SINGLE_COLUMN_ZONE",
           "identifier": "SELECTOR-Z1",
@@ -538,129 +306,455 @@
             {
               "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
               "identifier": "project",
-              "configProperty": "actionConfiguration.formData.JIRA_GET_ISSUE_TYPES_BY_PROJECT.project",
-              "isRequired": true,
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.project",
+              "isRequired": false,
               "label": "Project",
-              "tooltipText": "Project key",
+              "tooltipText": "Project : Use Connect Portal Workflow Settings to allow users to select which Project to create this Task in. (example: \"{{settings.project}}\")",
               "placeholderText": "Enter Project"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "notes",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.notes",
+              "isRequired": false,
+              "label": "Notes",
+              "tooltipText": "Notes",
+              "placeholderText": "Enter Notes"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "dueOnDate",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.dueOnDate",
+              "isRequired": false,
+              "label": "Due On Date",
+              "tooltipText": "Due On : The date on which  this task is due. Cannot be used together with Due At. (example: \"YYYY-MM-DD\")",
+              "placeholderText": "Enter Due On Date"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "dueAtDate",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.dueAtDate",
+              "isRequired": false,
+              "label": "Due At Date",
+              "tooltipText": "Due At : The date and time (ISO timestamp) at which this task is due . Cannot be used together with Due On. (example: \"2019-09-15T02:06:58.147Z\")",
+              "placeholderText": "Enter Due At Date"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "assignee",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.assignee",
+              "isRequired": false,
+              "label": "Assignee",
+              "tooltipText": "Assignee : The ID of the Asana user this task will be assigned to. Use Connect Portal Workflow Settings to allow users to select an Assignee. (example: \"{{settings.assignee}}\")",
+              "placeholderText": "Enter Assignee"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "gid",
+              "configProperty": "actionConfiguration.formData.ASANA_CREATE_TASK.gid",
+              "isRequired": false,
+              "label": "Gid",
+              "tooltipText": "External ID : An ID from your application to associate this task with. You can use this ID to sync updates to this task later.",
+              "placeholderText": "Enter Gid"
             }
           ]
         }
       ]
     },
     {
-      "identifier": "JIRA_GET_ISSUE_TYPES",
+      "identifier": "ASANA_UPDATE_TASK",
       "controlType": "SECTION_V2",
-      "name": "Get Issue Types",
+      "name": "Update Task",
       "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'JIRA_GET_ISSUE_TYPES'}}"
+        "show": "{{actionConfiguration.formData.command === 'ASANA_UPDATE_TASK'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "taskId",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.taskId",
+              "isRequired": true,
+              "label": "Task Id",
+              "tooltipText": "Task ID : The ID of the Task that will be updated.",
+              "placeholderText": "Enter Task Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "DROP_DOWN",
+              "identifier": "completeStatus",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.completeStatus",
+              "isRequired": false,
+              "label": "Complete Status",
+              "tooltipText": "Completed Status",
+              "placeholderText": "Enter Complete Status",
+              "options": [
+                {
+                  "label": "true",
+                  "value": "true"
+                },
+                {
+                  "label": "false",
+                  "value": "false"
+                }
+              ],
+              "isAllowClear": true
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "name",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.name",
+              "isRequired": false,
+              "label": "Name",
+              "tooltipText": "Name (example: \"Task Name\")",
+              "placeholderText": "Enter Name"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "notes",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.notes",
+              "isRequired": false,
+              "label": "Notes",
+              "tooltipText": "Notes",
+              "placeholderText": "Enter Notes"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "dueOnDate",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.dueOnDate",
+              "isRequired": false,
+              "label": "Due On Date",
+              "tooltipText": "Due On : The date on which  this task is due. Cannot be used together with Due At. (example: \"YYYY-MM-DD\")",
+              "placeholderText": "Enter Due On Date"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "dueAtDate",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.dueAtDate",
+              "isRequired": false,
+              "label": "Due At Date",
+              "tooltipText": "Due At : The date and time (ISO timestamp) at which this task is due . Cannot be used together with Due On. (example: \"2019-09-15T02:06:58.147Z\")",
+              "placeholderText": "Enter Due At Date"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "assignee",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.assignee",
+              "isRequired": false,
+              "label": "Assignee",
+              "tooltipText": "Assignee : The ID of the Asana user this task will be assigned to. Use Connect Portal Workflow Settings to allow users to select an Assignee. (example: \"{{settings.assignee}}\")",
+              "placeholderText": "Enter Assignee"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "gid",
+              "configProperty": "actionConfiguration.formData.ASANA_UPDATE_TASK.gid",
+              "isRequired": false,
+              "label": "Gid",
+              "tooltipText": "External ID : An ID from your application to associate this task with. You can use this ID to sync updates to this task later.",
+              "placeholderText": "Enter Gid"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ASANA_GET_TASKS",
+      "controlType": "SECTION_V2",
+      "name": "Get Tasks",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_TASKS'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "workspace",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASKS.workspace",
+              "isRequired": false,
+              "label": "Workspace",
+              "tooltipText": "Workspace : The ID of the Workspace to filter tasks on. Use Connect Portal Workflow Settings to allow users to select a Workspace. (example: \"{{settings.workspace}}\")",
+              "placeholderText": "Enter Workspace"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "project",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASKS.project",
+              "isRequired": false,
+              "label": "Project",
+              "tooltipText": "Project : The ID of the Project to filter tasks on. Use Connect Portal Workflow Settings to allow users to select a Project. (example: \"{{settings.project}}\")",
+              "placeholderText": "Enter Project"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "assignee",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASKS.assignee",
+              "isRequired": false,
+              "label": "Assignee",
+              "tooltipText": "Assignee : The ID of the assignee to filter tasks on. Use Connect Portal Workflow Settings to allow users to select an Assignee. (example: \"{{settings.assignee}}\")",
+              "placeholderText": "Enter Assignee"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "completedSince",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASKS.completedSince",
+              "isRequired": false,
+              "label": "Completed Since",
+              "tooltipText": "Completed since : Only return tasks that are either incomplete or that have been completed since this time (ISO or Unix timestamp). (example: \"2014-04-25T16:15:47-04:00\")",
+              "placeholderText": "Enter Completed Since"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ASANA_GET_TASKS_BY_ID",
+      "controlType": "SECTION_V2",
+      "name": "Get Tasks By Id",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_TASKS_BY_ID'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "taskId",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASKS_BY_ID.taskId",
+              "isRequired": true,
+              "label": "Task Id",
+              "tooltipText": "Task ID",
+              "placeholderText": "Enter Task Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ASANA_GET_TASK_BY_EXTERNAL_ID",
+      "controlType": "SECTION_V2",
+      "name": "Get Task By External Id",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_TASK_BY_EXTERNAL_ID'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "gid",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TASK_BY_EXTERNAL_ID.gid",
+              "isRequired": true,
+              "label": "Gid",
+              "tooltipText": "External ID : The ID that this task is associated or synced with, from your application.",
+              "placeholderText": "Enter Gid"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ASANA_ADD_TASK_TO_SECTION",
+      "controlType": "SECTION_V2",
+      "name": "Add Task To Section",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ASANA_ADD_TASK_TO_SECTION'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "sectionId",
+              "configProperty": "actionConfiguration.formData.ASANA_ADD_TASK_TO_SECTION.sectionId",
+              "isRequired": true,
+              "label": "Section Id",
+              "tooltipText": "Section ID : The ID of the section to add this task to. (example: \"{{settings.section}}\")",
+              "placeholderText": "Enter Section Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "taskId",
+              "configProperty": "actionConfiguration.formData.ASANA_ADD_TASK_TO_SECTION.taskId",
+              "isRequired": true,
+              "label": "Task Id",
+              "tooltipText": "Task ID : The ID of the task. (example: \"1204619611402340\")",
+              "placeholderText": "Enter Task Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "beforeTaskId",
+              "configProperty": "actionConfiguration.formData.ASANA_ADD_TASK_TO_SECTION.beforeTaskId",
+              "isRequired": false,
+              "label": "Before Task Id",
+              "tooltipText": "Before Task ID : The ID of a task in this section that this task will be inserted before. Cannot be used with After Task ID. (example: \"1204619611402340\")",
+              "placeholderText": "Enter Before Task Id"
+            }
+          ]
+        },
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "afterTaskId",
+              "configProperty": "actionConfiguration.formData.ASANA_ADD_TASK_TO_SECTION.afterTaskId",
+              "isRequired": false,
+              "label": "After Task Id",
+              "tooltipText": "After Task ID : The ID of a task in this section that this task will be inserted after. Cannot be used with Before Task ID. (example: \"1204619611402340\")",
+              "placeholderText": "Enter After Task Id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ASANA_GET_TEAMS",
+      "controlType": "SECTION_V2",
+      "name": "Get Teams",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_TEAMS'}}"
+      },
+      "children": [
+        {
+          "controlType": "SINGLE_COLUMN_ZONE",
+          "identifier": "SELECTOR-Z1",
+          "children": [
+            {
+              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
+              "identifier": "workspace",
+              "configProperty": "actionConfiguration.formData.ASANA_GET_TEAMS.workspace",
+              "isRequired": true,
+              "label": "Workspace",
+              "tooltipText": "Workspace : Returns the teams in this workspace visible to the authorized user. (example: \"{{settings.workspace}}\")",
+              "placeholderText": "Enter Workspace"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "ASANA_GET_WORKSPACES",
+      "controlType": "SECTION_V2",
+      "name": "Get Workspaces",
+      "conditionals": {
+        "show": "{{actionConfiguration.formData.command === 'ASANA_GET_WORKSPACES'}}"
       },
       "children": []
-    },
-    {
-      "identifier": "JIRA_DESCRIBE_ACTION_SCHEMA",
-      "controlType": "SECTION_V2",
-      "name": "Describe Action Schema",
-      "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'JIRA_DESCRIBE_ACTION_SCHEMA'}}"
-      },
-      "children": [
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "issueTypeId",
-              "configProperty": "actionConfiguration.formData.JIRA_DESCRIBE_ACTION_SCHEMA.issueTypeId",
-              "isRequired": true,
-              "label": "Issue Type Id",
-              "tooltipText": "Issue Type ID",
-              "placeholderText": "Enter Issue Type Id"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "projectKey",
-              "configProperty": "actionConfiguration.formData.JIRA_DESCRIBE_ACTION_SCHEMA.projectKey",
-              "isRequired": true,
-              "label": "Project Key",
-              "tooltipText": "Project key",
-              "placeholderText": "Enter Project Key"
-            }
-          ]
-        },
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "operation",
-              "configProperty": "actionConfiguration.formData.JIRA_DESCRIBE_ACTION_SCHEMA.operation",
-              "isRequired": true,
-              "label": "Operation",
-              "tooltipText": "'Operation Type value for example CREATE_ISSUE or UPDATE_ISSUE",
-              "placeholderText": "Enter Operation"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "identifier": "JIRA_GET_ISSUE_STATUS_BY_PROJECT",
-      "controlType": "SECTION_V2",
-      "name": "Get Issue Status By Project",
-      "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'JIRA_GET_ISSUE_STATUS_BY_PROJECT'}}"
-      },
-      "children": [
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "project",
-              "configProperty": "actionConfiguration.formData.JIRA_GET_ISSUE_STATUS_BY_PROJECT.project",
-              "isRequired": true,
-              "label": "Project",
-              "tooltipText": "Project key",
-              "placeholderText": "Enter Project"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "identifier": "JIRA_GET_ALL_ASSIGNEES_BY_PROJECT",
-      "controlType": "SECTION_V2",
-      "name": "Get All Assignees By Project",
-      "conditionals": {
-        "show": "{{actionConfiguration.formData.command === 'JIRA_GET_ALL_ASSIGNEES_BY_PROJECT'}}"
-      },
-      "children": [
-        {
-          "controlType": "SINGLE_COLUMN_ZONE",
-          "identifier": "SELECTOR-Z1",
-          "children": [
-            {
-              "controlType": "QUERY_DYNAMIC_INPUT_TEXT",
-              "identifier": "project",
-              "configProperty": "actionConfiguration.formData.JIRA_GET_ALL_ASSIGNEES_BY_PROJECT.project",
-              "isRequired": true,
-              "label": "Project",
-              "tooltipText": "Project key",
-              "placeholderText": "Enter Project"
-            }
-          ]
-        }
-      ]
     },
     {
       "identifier": "CUSTOM_ACTION",
